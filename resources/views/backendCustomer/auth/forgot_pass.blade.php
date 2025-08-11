@@ -3,46 +3,48 @@
 
     <style>
         :root {
-            --dark-purple: #2b2155;
-            --success-green: #198754;
+            --primary: #0066dc;
+            --primary-dark: #0052b0;
+            --primary-light: #e6f0fd;
+            --accent: #0f172a;
+            --dark: #0f172a;
+            --light: #f8f9fb;
+            --muted: #64748b;
+            --border: #e2e8f0;
         }
 
         .auth-card {
-            width: 100%;
-            max-width: 420px;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(16px);
+            background: var(--light);
             border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 2px 5px rgba(43, 33, 85, 0.3);
-            color: var(--dark-purple);
-            transition: 0.5s;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 102, 220, 0.2);
+            color: var(--dark);
+            max-width: 420px;
+            margin: auto;
         }
 
         .auth-card h3 {
             font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--dark-purple);
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            letter-spacing: 0.04em;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 0.5rem;
         }
 
         .auth-card p {
             font-size: 0.95rem;
-            color: #6c757d;
-            margin-bottom: 30px;
-            max-width: 360px;
-            margin-left: auto;
-            margin-right: auto;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
         }
 
         .input-icon-group {
             position: relative;
+            margin-bottom: 1rem;
         }
 
         .input-icon-group i {
@@ -50,82 +52,71 @@
             top: 50%;
             left: 14px;
             transform: translateY(-50%);
-            color: var(--dark-purple);
-            font-size: 1.1rem;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            pointer-events: none;
         }
 
         .input-icon-group input {
-            padding-left: 42px;
+            padding-left: 44px;
+            width: 100%;
         }
 
         .form-control {
             border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.15);
-            border: none;
-            border-bottom: 2px solid var(--dark-purple);
-            color: var(--dark-purple);
-            height: 42px;
+            background-color: var(--primary-light);
+            border: 1px solid var(--border);
+            border-bottom: 2px solid var(--primary);
+            color: var(--accent);
             font-weight: 500;
-            transition: border-color 0.3s ease;
+            height: 44px;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            font-size: 1rem;
         }
 
         .form-control::placeholder {
-            color: var(--dark-purple);
-            opacity: 0.6;
+            color: var(--muted);
         }
 
         .form-control:focus {
-            border-color: var(--success-green);
-            background-color: rgba(255, 255, 255, 0.2);
-            box-shadow: none;
-            color: var(--dark-purple);
+            border-color: var(--primary-dark);
+            background-color: var(--light);
+            outline: none;
+            box-shadow: 0 0 8px var(--primary);
         }
 
         .btn-submit {
-            background: linear-gradient(90deg, var(--dark-purple) 0%, var(--success-green) 100%);
+            background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 100%);
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
             font-weight: 700;
-            padding: 8px 0;
+            padding: 12px 0;
+            width: 100%;
             font-size: 1.1rem;
+            cursor: pointer;
             transition: opacity 0.3s ease;
         }
 
         .btn-submit:hover {
-            opacity: 0.85;
+            opacity: 0.9;
             color: #fff;
         }
 
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .alert {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
             font-weight: 600;
             font-size: 0.95rem;
-            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            justify-content: center;
-            padding: 0.6rem 1rem;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .alert-success {
             background-color: #d1e7dd;
-            color: var(--success-green);
+            color: #198754;
             border: 1px solid #badbcc;
         }
 
@@ -135,17 +126,68 @@
             border: 1px solid #f5c2c7;
         }
 
-        /* Link style same as login/register */
+        .text-danger small {
+            font-size: 0.85rem;
+        }
+
         .auth-card a.text-muted.small {
             text-decoration: none !important;
-            color: var(--dark-purple) !important;
+            color: var(--primary) !important;
             font-weight: 600;
             transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
 
         .auth-card a.text-muted.small:hover {
-            color: var(--success-green) !important;
-            text-decoration: none !important;
+            color: var(--primary-dark) !important;
+        }
+
+        /* Tab styles */
+        .tab-switch {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--primary-dark);
+            border-bottom: 3px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        .tab-btn.active,
+        .tab-btn:focus {
+            border-bottom-color: var(--primary);
+            outline: none;
+        }
+
+        .form-section {
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+        }
+
+        /* Visually hidden for labels */
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
         }
     </style>
 
@@ -184,7 +226,7 @@
                 <input type="email" name="email" class="form-control" placeholder="Email address" aria-label="Email" autocomplete="email" required>
             </div>
 
-            <button type="submit" class="btn btn-submit w-100 mt-3">Send Reset Link</button>
+            <button type="submit" class="btn-submit">Send Reset Link</button>
         </form>
 
         <div class="mt-4">

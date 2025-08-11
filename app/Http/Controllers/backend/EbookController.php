@@ -24,6 +24,7 @@ class EbookController extends Controller
 //store
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
@@ -39,14 +40,6 @@ class EbookController extends Controller
 
         // Create Ebook
         $ebook = Ebook::create($data);
-
-        // Optional: Auto-create purchase record
-        EbookPurchase::create([
-            'ebook_id' => $ebook->id,
-            'customer_id' => auth()->guard('customer')->id(),
-            'price_paid' => $ebook->price,
-            'payment_method' => 'card',
-        ]);
 
         return redirect()->route('backend.ebooks.index')->with('message', 'Ebook created successfully.');
     }

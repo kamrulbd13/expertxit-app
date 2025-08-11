@@ -13,6 +13,26 @@ return new class extends Migration
     {
         Schema::create('kids_programmings', function (Blueprint $table) {
             $table->id();
+            $table->integer('kidsProgramming_category_id');// Ensures foreign key reference
+            $table->string('kidsProgramme_id')->unique();
+            $table->string('kidsProgramme_name')->nullable();
+            $table->integer('trainer_id')->nullable();
+            $table->integer('trainer_type_id')->nullable();
+            $table->integer('skill_level_id')->nullable();
+            $table->integer('language_id')->nullable();
+            $table->longText('trainingDetails')->nullable();
+            $table->string('lecture')->nullable();
+            $table->longText('prerequisite')->nullable();
+            $table->string('duration')->nullable();
+            $table->string('assessment')->nullable();
+            $table->string('quizzes')->nullable();
+            $table->longText('certification')->nullable();
+            $table->longText('learning_outcome')->nullable();
+            $table->integer('regular_fees')->nullable();
+            $table->integer('current_fees')->nullable();
+            $table->text('image_path')->nullable();
+            $table->tinyInteger('status')->default('0')->comment('1=active and 0= Draft');
+            $table->integer('author_id');
             $table->timestamps();
         });
     }

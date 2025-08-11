@@ -5,19 +5,19 @@
             <h4 class="card-title text-center font-weight-bold text-base text-uppercase">New Training Information</h4>
             <hr class="w-50 mx-auto">
             <p class="card-description">
-              " Entry Basic Training Information "
+              " Entry Basic  Information "
             </p>
-            <form action="{{route('training.store')}}" method="POST" class="forms" enctype="multipart/form-data">
+            <form action="{{route('kidsProgramme.store')}}" method="POST" class="forms" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group mt-3">
-                            <label for="trainer_type_id">Training Category</label>
-                            <select class="form-control" name="training_category_id" id="trainer_type_id">
+                            <label for="trainer_type_id">Category</label>
+                            <select class="form-control" name="kidsProgramming_category_id" id="kidsProgramming_category_id">
                                 <option>Select ...</option>
-                                @foreach($trainingCategories as $trainingCategory)
-                                    <option value="{{$trainingCategory->id}}">{{$trainingCategory->training_category}}</option>
+                                @foreach($kidsProgrammeCategories as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
 
                             </select>
@@ -39,9 +39,9 @@
 
                 <div class="form-group mb-2">
                     <label for="school-id" class="col-form-label">Training Name</label>
-                    <input type="text" name="training_name" class="form-control form-control-sm"  />
-                    @error('training_name')
-                        <span class="text-danger mt-1">Please entry the Training Name</span>
+                    <input type="text" name="kidsProgramme_name" class="form-control form-control-sm"  />
+                    @error('kidsProgramme_name')
+                        <span class="text-danger mt-1">Please entry the  Name</span>
                     @enderror
                 </div>
                 <div class="form-group mb-2">
@@ -274,7 +274,7 @@
 
 
                 <div class="text-center mt-4">
-                    <a href="{{route('training.index')}}" class="btn btn-danger" data-dismiss="modal">
+                    <a href="{{route('kidsProgramme.index')}}" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times-circle" aria-hidden="true"></i>
                         Close
                     </a>

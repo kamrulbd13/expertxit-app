@@ -3,7 +3,7 @@
 @section('mainContent')
     <style>
         .ebook-hero {
-            background: linear-gradient(to right, rgba(43, 33, 85, 0.9), rgba(43, 33, 85, 0.8)),
+            background: linear-gradient(to right, rgba(00, 33, 85, 0.9), rgba(00, 00, 85, 0.8)),
             url('{{ asset($ebook->cover_image ?? "backend/images/ebook/default.jpg") }}') center/cover no-repeat;
             color: white;
             padding: 5rem 2rem;

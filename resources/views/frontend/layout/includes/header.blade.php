@@ -392,12 +392,12 @@
                                 <div class="col-md-4">
                                     <h6 class="shadow-sm fw-bold border p-2 rounded-2 text-center">{{ $category->name ?? '' }}</h6>
                                     <ul class="list-unstyled">
-                                        @foreach($category->trainings as $training)
+                                        @foreach($category->kidsProgrammes as $training)
                                             <li>
                                                 <a href="{{ route('details', $training->id) }}"
                                                    class="{{ request()->routeIs('details') && request()->route('id') == $training->id ? 'text-white' : '' }}">
                                                     <i class="fa fa-book "></i>
-                                                    {{ $training->training_name ?? '' }}
+                                                    {{ $training->kidsProgramme_name ?? '' }}
                                                 </a>
                                             </li>
                                         @endforeach

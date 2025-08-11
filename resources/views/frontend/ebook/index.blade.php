@@ -3,8 +3,7 @@
 
     <style>
         .contact-hero {
-            background: linear-gradient(to bottom, rgba(43, 33, 85, 0.92), rgba(43, 33, 85, 0.75)),
-            url('https://www.networkbulls.com/images/training-lab.jpg') no-repeat center center;
+            background: var(--primary-dark);
             background-size: cover;
             color: #fff;
             padding: 3rem 0;
@@ -36,7 +35,7 @@
 
     <section class="contact-hero">
         <div class="container">
-            <h1>E-Book Store</h1>
+            <h1 >E-Book Store</h1>
             <p>Explore our curated collection of industry-relevant eBooks designed to enhance your knowledge and boost your career in networking, IT, and cybersecurity. Whether you're a beginner or a professional, our eBooks cover essential concepts, practical labs, and expert insights to support your learning journey.</p>
         </div>
     </section>
@@ -46,7 +45,7 @@
             <div class="col-lg-12 mb-4">
                 <div class=" p-4 bg-white rounded">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="fw-bold mb-0 text-primary">Find Book</h4>
+                        <h4 class="fw-bold mb-0 text-dark">Find Book</h4>
                         <input type="text" id="search_ebook" class="form-control w-50" placeholder="Search...">
                     </div>
 

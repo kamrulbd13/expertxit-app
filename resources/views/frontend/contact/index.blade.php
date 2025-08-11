@@ -11,12 +11,7 @@
         }
 
         .contact-hero {
-            background: linear-gradient(
-                to bottom,
-                rgba(43, 33, 85, 0.92),
-                rgba(43, 33, 85, 0.75)
-            ),
-            url('https://www.networkbulls.com/images/training-lab.jpg') no-repeat center center;
+            background: var(--primary-dark);
             background-size: cover;
             color: #fff;
             padding: 4rem 0;

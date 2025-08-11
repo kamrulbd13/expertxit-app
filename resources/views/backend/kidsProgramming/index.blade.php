@@ -10,7 +10,7 @@
                 <div class="card-header d-flex justify-content-between mb-4">
                     <div>
 
-                        <a href="{{route('training.create')}}" class="btn btn-sm btn-info" >
+                        <a href="{{route('kidsProgramme.create')}}" class="btn btn-sm btn-info" >
                             <i class="fa fa-plus-circle me-2"></i>
                             Add New</a>
                     </div>
@@ -27,8 +27,8 @@
                         <thead>
                         <tr>
                             <th>S/N</th>
-                            <th>Training Name</th>
-                            <th>Training Categroy</th>
+                            <th>Programme Name</th>
+                            <th>Category</th>
                             <th>Auth</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -38,7 +38,7 @@
                         @php
                             $sl = 1;
                         @endphp
-                        @foreach($trainings as $training)
+                        @foreach($kidsProgrammings as $training)
                         <tr>
                             <td>{{$sl++}}</td>
                             <td>{{$training->training_name}}</td>

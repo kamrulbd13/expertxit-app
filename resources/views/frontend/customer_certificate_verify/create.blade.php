@@ -11,7 +11,7 @@
         }
         .certificate-form .form-control:focus {
             box-shadow: none;
-            border-color: #6c63ff;
+            border-color: #1f2937;
         }
         .certificate-form .input-group-text {
             background-color: #f0f0f0;
@@ -24,8 +24,8 @@
 
     <div class="container py-5">
         <div class="certificate-form card">
-            <div class="card-header text-center bg-primary text-white">
-                <h4 class="mb-0">
+            <div class="card-header text-center  " style="background-color: var(--primary-dark)">
+                <h4 class="mb-0 text-white" >
                     <i class="fas fa-certificate me-2"></i> Certificate Verification
                 </h4>
             </div>

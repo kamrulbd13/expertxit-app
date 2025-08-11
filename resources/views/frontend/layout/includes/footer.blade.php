@@ -313,11 +313,11 @@
                     <div class="col-md-4 mb-4 mb-md-0">
                         <h4>Quick Links</h4>
                         <ul class="link-list">
-                            <li><a href="#">About Institution</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="{{route('contact.index')}}">Contact</a></li>
                             <li><a href="#">Academic Programs</a></li>
                             <li><a href="#">Faculty Members</a></li>
                             <li><a href="#">Research Center</a></li>
-                            <li><a href="#">International Collaboration</a></li>
                         </ul>
                     </div>
 
@@ -388,8 +388,8 @@
                     <a href="{{route('ebook.store.index')}}" class="btn btn-primary">
                         Digital Library Access
                     </a>
-                    <a href="{{route('contact.index')}}" class="btn btn-primary">
-                        Schedule Consultation
+                    <a href="{{ route('customer.verifyCertificate') }}" class="btn btn-primary">
+                        Certificate Verify
                     </a>
                 </div>
             </div>
