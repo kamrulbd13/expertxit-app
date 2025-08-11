@@ -31,6 +31,12 @@ use App\Http\Controllers\backend\LabAccessCredentialController;
 use App\Http\Controllers\backend\EbookController;
 use App\Http\Controllers\backend\HeroSliderController;
 use App\Http\Controllers\backend\VisitorController;
+use App\Http\Controllers\backend\SoftwareCategoryController;
+use App\Http\Controllers\backend\SoftwareController;
+use App\Http\Controllers\backend\ITServiceCategoryController;
+use App\Http\Controllers\backend\ITServiceController;
+use App\Http\Controllers\backend\KidsProgrammeCategoryController;
+use App\Http\Controllers\backend\KidsProgrammeController;
 
 
 
@@ -135,6 +141,21 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/trainer/update/{id}',[TrainerController::class, 'update'])->name('trainer.update');
     Route::get('/trainer/status/{id}',[TrainerController::class, 'status'])->name('trainer.status');
     Route::get('/trainer/delete/{id}',[TrainerController::class, 'delete'])->name('trainer.delete');
+
+    Route::prefix('software')->as('software.')->group(function () {
+        Route::resource('category', SoftwareCategoryController::class);
+        Route::resource('', SoftwareController::class);
+    });
+
+    Route::prefix('itService')->as('itService.')->group(function () {
+        Route::resource('category', ITServiceCategoryController::class);
+        Route::resource('', ITServiceController::class);
+    });
+
+    Route::prefix('kidsProgramme')->as('kidsProgramme.')->group(function () {
+        Route::resource('category', KidsProgrammeCategoryController::class);
+        Route::resource('', KidsProgrammeController::class);
+    });
 
     //    Training Category
     Route::get('/training/category',[TrainingCategoryController::class, 'index'])->name('training.category.index');

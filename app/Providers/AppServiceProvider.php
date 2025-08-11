@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 use App\Models\Event;
+use App\Models\ITServiceCategory;
+use App\Models\KidsProgrammingCategory;
+use App\Models\SoftwareCategory;
 use App\Models\SystemMailSetting;
 use App\Models\SystemSetting;
 use App\Models\Training;
@@ -102,6 +105,17 @@ class AppServiceProvider extends ServiceProvider
             $view->with('totalEvent', Event::where('status', 1)->count());
             $view->with('trainingCategories', TrainingCategory::where('status', 1)->get());
             $view->with('trainings', Training::where('status', 1)->get());
+
+            $view->with('softwareCategories', SoftwareCategory::where('status', 1)->get());
+            $view->with('trainings', Training::where('status', 1)->get());
+
+            $view->with('itServiceCategories', ITServiceCategory::where('status', 1)->get());
+            $view->with('trainings', Training::where('status', 1)->get());
+
+            $view->with('kidsProgrammeCategories', KidsProgrammingCategory::where('status', 1)->get());
+            $view->with('trainings', Training::where('status', 1)->get());
+
+
             $view->with('systemInfo', SystemSetting::first());
             $view->with('admin', Auth::guard('admin')->user());
         });

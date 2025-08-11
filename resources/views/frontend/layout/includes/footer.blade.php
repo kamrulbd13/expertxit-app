@@ -302,7 +302,7 @@
                         </div>
                     </div>
                     <div>
-                        <h5 class="mb-1">ISO 9001 Certified</h5>
+                        <h5 class="mb-1">Certified</h5>
                         <small class="text-muted">Quality Management System</small>
                     </div>
                 </div>
@@ -339,7 +339,7 @@
                                 <i class="bi bi-geo-alt-fill icon"></i>
                             </div>
                             <div>
-                                <p class="mb-0">123 Education Avenue<br>Dhaka 1212, Bangladesh</p>
+                                <p class="mb-0">{{$systemInfo->address ?? ''}}</p>
                             </div>
                         </div>
                         <div class="contact-item">

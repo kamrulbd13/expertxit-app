@@ -256,24 +256,30 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
 
-                            <div class="d-flex align-items-center mt-2 gap-2">
-                                <div class="captcha-container flex-grow-1">
+                            <div class="d-flex align-items-center justify-content-between mt-3" style="width: 100%; max-width: 100%;">
+                                <div class="captcha-container flex-grow-1 me-3" style="border: 1px solid #ced4da; border-radius: 6px; overflow: hidden;">
                                     <img src="{{ captcha_src('flat') }}"
                                          alt="CAPTCHA"
-                                         class="img-fluid">
+                                         class="img-fluid d-block"
+                                         style="width: 100%; height:30px ; object-fit: contain;">
                                 </div>
                                 <button type="button"
-                                        class="btn btn-refresh"
-                                        onclick="refreshCaptcha()">
-                                    <i class="bi bi-arrow-clockwise"></i>
+                                        class="btn btn-outline-secondary p-2 d-flex align-items-center justify-content-center"
+                                        onclick="refreshCaptcha()"
+                                        aria-label="Refresh CAPTCHA"
+                                        style="width: 42px; height: 42px; border-radius: 6px;">
+                                    <i class="bi bi-arrow-clockwise fs-5"></i>
                                 </button>
                             </div>
+
+
                         </div>
 
                         <button type="submit"
-                                class="btn btn-tour  w-100 mt-4 py-2 fw-semibold">
+                                class="btn btn-tour w-100 mt-4 py-2 fw-semibold d-flex justify-content-center align-items-center">
                             <i class="bi bi-send-fill me-2"></i> Submit Request
                         </button>
+
                     </form>
 
                     @if(session('success'))

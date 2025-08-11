@@ -320,3 +320,25 @@
     </div>
 </section>
 
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelectorAll(".hero-slide");
+        let current = 0;
+        const slideCount = slides.length;
+        const slideInterval = 6000; // 6 seconds
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("active", i === index);
+            });
+        }
+
+        setInterval(() => {
+            current = (current + 1) % slideCount;
+            showSlide(current);
+        }, slideInterval);
+
+        showSlide(current);
+    });
+</script>
+

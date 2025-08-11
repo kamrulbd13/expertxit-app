@@ -59,15 +59,55 @@
           </ul>
         </div>
       </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#Software" aria-expanded="false" aria-controls="ui-basic">
+                <i class="far fa-compass menu-icon"></i>
+                <span class="menu-title">Software</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="Software">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{route('software.index')}}">All Software</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('software.category.index')}}">Category</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#itServices" aria-expanded="false" aria-controls="ui-basic">
+                <i class="far fa-compass menu-icon"></i>
+                <span class="menu-title">IT Services</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="itServices">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{route('itService.index')}}">All IT Service</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('itService.category.index')}}">Category</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#Trainings" aria-expanded="false" aria-controls="ui-basic">
+                <i class="far fa-compass menu-icon"></i>
+                <span class="menu-title">Trainings</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="Trainings">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{route('training.index')}}">All Training</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('training.category.index')}}">Category</a></li>
+                </ul>
+            </div>
+        </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#Trainings" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-toggle="collapse" href="#kidsProgramming" aria-expanded="false" aria-controls="ui-basic">
           <i class="far fa-compass menu-icon"></i>
-          <span class="menu-title">Trainings</span>
+          <span class="menu-title">Kids Programming</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="Trainings">
+        <div class="collapse" id="kidsProgramming">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('training.index')}}">All Training</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('kidsProgramme.index')}}">All Kids Programmes</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('kidsProgramme.category.index')}}">Category</a></li>
           </ul>
           </div>
       </li>
@@ -181,7 +221,6 @@
             <div class="collapse" id="setting">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('trainer.type.index')}}">Trainer Type</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route('training.category.index')}}">Category</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('language.index')}}">Language</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('skill.level.index')}}">Skill Level</a></li>
                 </ul>

@@ -301,24 +301,23 @@
                     </a>
                     <div class="dropdown-menu mega-menu mt-0" id="softwareMenu" aria-labelledby="softwareDropdown">
                         <div class="row g-4">
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-globe me-1" aria-hidden="true"></i> Web Development</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-globe me-2" aria-hidden="true"></i> Corporate Websites</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-shopping-cart me-2" aria-hidden="true"></i> eCommerce</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-mobile-alt me-2" aria-hidden="true"></i> Mobile Apps</a>
-                            </div>
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-cogs me-1" aria-hidden="true"></i> Enterprise</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cogs me-2" aria-hidden="true"></i> ERP Systems</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-database me-2" aria-hidden="true"></i> Data Analytics</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-plug me-2" aria-hidden="true"></i> API Integrations</a>
-                            </div>
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-pencil-ruler me-1" aria-hidden="true"></i> Design</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-pencil-ruler me-2" aria-hidden="true"></i> UI/UX Design</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-vial me-2" aria-hidden="true"></i> QA & Testing</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user-check me-2" aria-hidden="true"></i> Usability</a>
-                            </div>
+                            @foreach($softwareCategories as $category)
+                                <div class="col-md-4">
+                                    <h6 class="shadow-sm fw-bold border p-2 rounded-2 text-center">{{ $category->name ?? '' }}</h6>
+                                    <ul class="list-unstyled">
+                                        @foreach($category->trainings as $training)
+                                            <li>
+                                                <a href="{{ route('details', $training->id) }}"
+                                                   class="{{ request()->routeIs('details') && request()->route('id') == $training->id ? 'text-white' : '' }}">
+                                                    <i class="fa fa-book "></i>
+                                                    {{ $training->training_name ?? '' }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </li>
@@ -331,24 +330,23 @@
                     </a>
                     <div class="dropdown-menu mega-menu mt-0" id="itMenu" aria-labelledby="itDropdown">
                         <div class="row g-4">
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-life-ring me-1" aria-hidden="true"></i> Support</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-headset me-2" aria-hidden="true"></i> Help Desk</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-wifi me-2" aria-hidden="true"></i> Remote Assistance</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-tools me-2" aria-hidden="true"></i> Hardware Maintenance</a>
-                            </div>
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-server me-1" aria-hidden="true"></i> Infrastructure</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-server me-2" aria-hidden="true"></i> Server Management</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cloud-upload-alt me-2" aria-hidden="true"></i> Cloud Migration</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-network-wired me-2" aria-hidden="true"></i> Network Setup</a>
-                            </div>
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-shield-alt me-1" aria-hidden="true"></i> Security</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-shield-alt me-2" aria-hidden="true"></i> Cybersecurity</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-hdd me-2" aria-hidden="true"></i> Backup & DR</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-file-contract me-2" aria-hidden="true"></i> Compliance</a>
-                            </div>
+                            @foreach($itServiceCategories as $category)
+                                <div class="col-md-4">
+                                    <h6 class="shadow-sm fw-bold border p-2 rounded-2 text-center">{{ $category->name ?? '' }}</h6>
+                                    <ul class="list-unstyled">
+                                        @foreach($category->trainings as $training)
+                                            <li>
+                                                <a href="{{ route('details', $training->id) }}"
+                                                   class="{{ request()->routeIs('details') && request()->route('id') == $training->id ? 'text-white' : '' }}">
+                                                    <i class="fa fa-book "></i>
+                                                    {{ $training->training_name ?? '' }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </li>
@@ -360,23 +358,24 @@
                         <i class="fas fa-chalkboard-teacher me-1" aria-hidden="true"></i> Training
                     </a>
                     <div class="dropdown-menu mega-menu mt-0" id="trainingMenu" aria-labelledby="trainingDropdown">
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-code me-1" aria-hidden="true"></i> Programming</h6>
-                                <a class="dropdown-item" href="#"><i class="fab fa-php me-2" aria-hidden="true"></i> PHP/Laravel</a>
-                                <a class="dropdown-item" href="#"><i class="fab fa-js-square me-2" aria-hidden="true"></i> JavaScript</a>
-                                <a class="dropdown-item" href="#"><i class="fab fa-python me-2" aria-hidden="true"></i> Python</a>
-                            </div>
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-paint-brush me-1" aria-hidden="true"></i> Design</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-object-ungroup me-2" aria-hidden="true"></i> UI/UX</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-photo-video me-2" aria-hidden="true"></i> Graphic Design</a>
-                            </div>
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-certificate me-1" aria-hidden="true"></i> Certifications</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cloud me-2" aria-hidden="true"></i> Cloud</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-shield-alt me-2" aria-hidden="true"></i> Cybersecurity</a>
-                            </div>
+                        <div class="row">
+                            @foreach($trainingCategories as $category)
+                                <div class="col-md-4">
+                                    <h6 class="shadow-sm fw-bold border p-2 rounded-2 text-center">{{ $category->training_category ?? '' }}</h6>
+                                    <ul class="list-unstyled">
+                                        @foreach($category->trainings as $training)
+                                            <li>
+                                                <a href="{{ route('details', $training->id) }}"
+                                                   class="{{ request()->routeIs('details') && request()->route('id') == $training->id ? 'text-white' : '' }}">
+                                                    <i class="fa fa-book "></i>
+                                                    {{ $training->training_name ?? '' }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </li>
@@ -389,24 +388,23 @@
                     </a>
                     <div class="dropdown-menu mega-menu mt-0" id="kidsMenu" aria-labelledby="kidsDropdown">
                         <div class="row g-4">
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-rocket me-1" aria-hidden="true"></i> Beginner</h6>
-                                <a class="dropdown-item" href="#"><i class="fas fa-puzzle-piece me-2" aria-hidden="true"></i> Scratch</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cogs me-2" aria-hidden="true"></i> Blockly</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-gamepad me-2" aria-hidden="true"></i> Tynker</a>
-                            </div>
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-lightbulb me-1" aria-hidden="true"></i> Intermediate</h6>
-                                <a class="dropdown-item" href="#"><i class="fab fa-python me-2" aria-hidden="true"></i> Python Basics</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-robot me-2" aria-hidden="true"></i> Robotics</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-code me-2" aria-hidden="true"></i> Game Development</a>
-                            </div>
-                            <div class="col-md-4">
-                                <h6><i class="fas fa-star me-1" aria-hidden="true"></i> Advanced</h6>
-                                <a class="dropdown-item" href="#"><i class="fab fa-js-square me-2" aria-hidden="true"></i> JavaScript</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-network-wired me-2" aria-hidden="true"></i> IoT Basics</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-laptop-code me-2" aria-hidden="true"></i> Web Development</a>
-                            </div>
+                            @foreach($kidsProgrammeCategories as $category)
+                                <div class="col-md-4">
+                                    <h6 class="shadow-sm fw-bold border p-2 rounded-2 text-center">{{ $category->name ?? '' }}</h6>
+                                    <ul class="list-unstyled">
+                                        @foreach($category->trainings as $training)
+                                            <li>
+                                                <a href="{{ route('details', $training->id) }}"
+                                                   class="{{ request()->routeIs('details') && request()->route('id') == $training->id ? 'text-white' : '' }}">
+                                                    <i class="fa fa-book "></i>
+                                                    {{ $training->training_name ?? '' }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </li>
