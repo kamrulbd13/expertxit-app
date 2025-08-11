@@ -256,7 +256,7 @@
         <div class="d-flex align-items-center">
             <div><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Jessore, Bangladesh</div>
             <div class="vr"></div>
-            <div><i class="fas fa-envelope me-2" aria-hidden="true"></i><a href="mailto:info@expertxsolutions.com">info@expertxsolutions.com</a></div>
+            <div><i class="fas fa-envelope me-2" aria-hidden="true"></i><a href="mailto:{{$systemInfo->mail1 ?? ''}}">{{$systemInfo->mail1 ?? ''}}</a></div>
         </div>
         <div class="d-flex align-items-center">
             <span class="me-3">Follow:</span>
@@ -264,6 +264,7 @@
                 <a href="#" aria-label="Facebook" role="listitem"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="Twitter" role="listitem"><i class="fab fa-twitter"></i></a>
                 <a href="#" aria-label="LinkedIn" role="listitem"><i class="fab fa-linkedin-in"></i></a>
+                <a href="{{ route('customer.login') }}" aria-label="login/register" role="listitem"><i class="fas fa-users me-1"></i>Login/Register</a>
             </div>
         </div>
     </div>

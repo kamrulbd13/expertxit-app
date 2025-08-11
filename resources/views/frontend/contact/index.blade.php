@@ -184,7 +184,7 @@
                     <div class="info-icon"><i class="fa fa-globe"></i></div>
                     <div class="info-content">
                         <h3>Our Location</h3>
-                        <p>IVA-Network Headquarters<br>Dhaka, Bangladesh</p>
+                        <p>{{$systemInfo->site_name ?? ''}}<br>{{$systemInfo->address ?? ''}}</p>
                     </div>
                 </div>
 
