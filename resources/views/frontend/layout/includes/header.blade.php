@@ -392,12 +392,12 @@
                                 <div class="col-md-4">
                                     <h6 class="shadow-sm fw-bold border p-2 rounded-2 text-center">{{ $category->name ?? '' }}</h6>
                                     <ul class="list-unstyled">
-                                        @foreach($category->kidsProgrammes as $training)
+                                        @foreach($category->kidsProgrammes as $item)
                                             <li>
-                                                <a href="{{ route('details', $training->id) }}"
-                                                   class="{{ request()->routeIs('details') && request()->route('id') == $training->id ? 'text-white' : '' }}">
+                                                <a href="{{ route('details', $item->id) }}"
+                                                   class="{{ request()->routeIs('details') && request()->route('id') == $item->id ? 'text-primary' : '' }}">
                                                     <i class="fa fa-book "></i>
-                                                    {{ $training->kidsProgramme_name ?? '' }}
+                                                    {{ $item->kidsProgramme_name ?? '' }}
                                                 </a>
                                             </li>
                                         @endforeach

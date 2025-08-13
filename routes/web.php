@@ -3,12 +3,14 @@
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\TrainingController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\frontend\KidsProgrammeController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/contact',[HomeController::class, 'contact'])->name('contact.index');
 Route::get('/ebook/store',[HomeController::class, 'ebook'])->name('ebook.store.index');
 Route::get('/ebook/details/{id}', [HomeController::class, 'details'])->name('ebook.show.details');
 Route::get('/training/details/{id}',[TrainingController::class, 'details'])->name('details');
+Route::get('/kids-programme/details/{id}',[KidsProgrammeController::class, 'details'])->name('details');
 Route::get('/job/guarantee/course/',[TrainingController::class, 'jobGuaranteeCourse'])->name('job.guarantee.course');
 
 

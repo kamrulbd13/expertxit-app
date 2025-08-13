@@ -6,16 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class KidsProgramingCurriculum extends Model
 {
-    protected $table = 'kids_programing_curricula'; // Ensure this matches your DB table
-    protected $fillable = ['kids_programme_id', 'title', 'sub_title', 'description', 'duration'];
+    protected $table = 'kids_programing_curricula';
 
-    // Belongs to a program
+    protected $fillable = [
+        'kids_programme_id', // Must match DB column exactly
+        'title',
+        'sub_title',
+        'description',
+        'duration',
+    ];
+
     public function kidsProgramme()
     {
-        return $this->belongsTo(KidsProgramming::class, 'kids_programme_id');
+        return $this->belongsTo(KidsProgramming::class, 'kids_programme_id', 'kidsProgramme_id');
     }
 
-    // Has many resources
     public function resources()
     {
         return $this->hasMany(StudyMaterial::class, 'curriculum_id');
