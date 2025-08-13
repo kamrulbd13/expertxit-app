@@ -188,4 +188,25 @@ class KidsProgramming extends Model
     {
         return $this->hasMany(KidsProgramingCurriculum::class, 'kids_programme_id', 'kidsProgramme_id');
     }
+
+    //    many ot one with skillLevel
+    public function skillLevel(){
+        return $this->belongsTo(SkillLevel::class);
+    }
+
+    //    many ot one with tlanguage
+    public function language(){
+        return $this->belongsTo(Language::class);
+    }
+
+    //    many ot one with trainer
+    public function trainer(){
+        return $this->belongsTo(Trainer::class);
+    }
+
+    //    many ot one with trainer type
+    public function trainerType(){
+        return $this->belongsTo(TrainerType::class);
+    }
+
 }
