@@ -394,8 +394,8 @@
                                     <ul class="list-unstyled">
                                         @foreach($category->kidsProgrammes as $item)
                                             <li>
-                                                <a href="{{ route('kids.programme.', $item->id) }}"
-                                                   class="{{ request()->routeIs('kids.programme.') && request()->route('id') == $item->id ? 'text-primary' : '' }}">
+                                                <a href="{{ route('kids.programme.details', $item->id) }}"
+                                                   class="{{ request()->routeIs('kids.programme.details') && request()->route('id') == $item->id ? 'text-primary' : '' }}">
                                                     <i class="fa fa-book "></i>
                                                     {{ $item->kidsProgramme_name ?? '' }}
                                                 </a>
