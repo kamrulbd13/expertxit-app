@@ -57,4 +57,6 @@ class KidsProgrammingCategory extends Model
     {
         return $this->hasMany(KidsProgramming::class, 'kidsProgramming_category_id'); // Adjust 'category_id' if different
     }
+
+
 }

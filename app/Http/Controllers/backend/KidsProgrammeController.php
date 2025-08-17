@@ -19,8 +19,8 @@ class KidsProgrammeController extends Controller
     //index
     public function index()
     {
-        return view('backend.kidsProgramming.index',[
-            'kidsProgrammings'   => KidsProgramming::all(),
+        return view('backend.kidsProgramming.index', [
+            'kidsProgrammings' => KidsProgramming::with('category')->get(),
         ]);
     }
 

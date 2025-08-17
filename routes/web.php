@@ -4,6 +4,8 @@ use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\TrainingController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\frontend\KidsProgrammeController;
+use App\Http\Controllers\frontend\SoftwareControlller;
+use App\Http\Controllers\frontend\ItServiceControlller;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/contact',[HomeController::class, 'contact'])->name('contact.index');
@@ -11,6 +13,8 @@ Route::get('/ebook/store',[HomeController::class, 'ebook'])->name('ebook.store.i
 Route::get('/ebook/details/{id}', [HomeController::class, 'details'])->name('ebook.show.details');
 Route::get('/training/details/{id}',[TrainingController::class, 'details'])->name('details');
 Route::get('/kids-programme/details/{id}',[KidsProgrammeController::class, 'details'])->name('kids.programme.details');
+Route::get('/software/details/{id}',[SoftwareControlller::class, 'details'])->name('software.details');
+Route::get('/it-service/details/{id}',[ItServiceControlller::class, 'details'])->name('itService.details');
 Route::get('/job/guarantee/course/',[TrainingController::class, 'jobGuaranteeCourse'])->name('job.guarantee.course');
 
 

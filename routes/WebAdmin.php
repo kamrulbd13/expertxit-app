@@ -144,12 +144,17 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::prefix('software')->as('software.')->group(function () {
         Route::resource('category', SoftwareCategoryController::class);
-        Route::resource('', SoftwareController::class);
+        Route::resource('/', SoftwareController::class)->parameters([
+            '' => 'id'  // now {id} will be used instead of {software}
+        ]);
     });
+
 
     Route::prefix('itService')->as('itService.')->group(function () {
         Route::resource('category', ITServiceCategoryController::class);
-        Route::resource('', ITServiceController::class);
+        Route::resource('/', ITServiceController::class)->parameters([
+            '' => 'id'
+        ]);
     });
 
     Route::prefix('kidsProgramme')->as('kidsProgramme.')->group(function () {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Software;
+use App\Models\SoftwareCategory;
 use Illuminate\Http\Request;
 
 class SoftwareController extends Controller
@@ -10,56 +12,66 @@ class SoftwareController extends Controller
     /**
      * Display a listing of the resource.
      */
+    //index
     public function index()
     {
-        //
+        return view('backend.software.index',[
+            'softwares'   => Software::all(),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    //create
     public function create()
     {
-        //
+        return view('backend.software.create',[
+            'softwareCategories'   => SoftwareCategory::where('status',1)->get(),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+//    store
     public function store(Request $request)
     {
-        //
+        Software::saveData($request);
+        return redirect()
+            ->back()
+            ->with('message','');
+    }
+//     detail
+    public function show($id)
+    {
+
+
+        return view('backend.software.detail',[
+            'software' => Software::find($id),
+
+        ]);
+    }
+//     edit
+    public function edit($id)
+    {
+
+
+        return view('backend.software.edit',[
+            'software' => Software::find($id),
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    //     update
+    public function update(Request $request, $id)
     {
-        //
+        Software::updateData($request, $id);
+        return redirect()
+            ->route('software.index')
+            ->with('update','');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+//    delete
+    public function destroy($id)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Software::deleteData($id);
+        return redirect()
+            ->back()
+            ->with('delete', '');
     }
 }

@@ -5,6 +5,7 @@ use App\Models\Event;
 use App\Models\ITServiceCategory;
 use App\Models\KidsProgramming;
 use App\Models\KidsProgrammingCategory;
+use App\Models\Software;
 use App\Models\SoftwareCategory;
 use App\Models\SystemMailSetting;
 use App\Models\SystemSetting;
@@ -108,7 +109,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('trainings', Training::where('status', 1)->get());
 
             $view->with('softwareCategories', SoftwareCategory::where('status', 1)->get());
-            $view->with('trainings', Training::where('status', 1)->get());
+            $view->with('softwares', Software::where('status', 1)->get());
 
             $view->with('itServiceCategories', ITServiceCategory::where('status', 1)->get());
             $view->with('trainings', Training::where('status', 1)->get());

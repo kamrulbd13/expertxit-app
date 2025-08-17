@@ -42,7 +42,7 @@
                         <tr>
                             <td>{{$sl++}}</td>
                             <td>{{$item->kidsProgramme_name}}</td>
-                            <td>{{$item->kidsProgrammeCategory->name}}</td>
+                            <td>{{$item->category->name}}</td>
                             <td>{{Auth::user()->name}}</td>
                             <td>
                                 <label class="{{$item->status === 1 ? 'badge badge-success' : 'badge badge-warning'}} w-100 ">

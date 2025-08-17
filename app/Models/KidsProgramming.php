@@ -209,4 +209,10 @@ class KidsProgramming extends Model
         return $this->belongsTo(TrainerType::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(KidsProgrammingCategory::class, 'kidsProgramming_category_id');
+    }
+
+
 }

@@ -53,8 +53,8 @@ class ITServiceCategory extends Model
     }
 
 //    with training
-    public function trainings()
+    public function itServices()
     {
-        return $this->hasMany(Training::class, 'training_category_id'); // Adjust 'category_id' if different
+        return $this->hasMany(ITService::class, 'itService_category_id'); // Adjust 'category_id' if different
     }
 }

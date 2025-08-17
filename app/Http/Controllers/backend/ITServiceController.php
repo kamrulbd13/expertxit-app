@@ -3,63 +3,75 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ITService;
+use App\Models\ITServiceCategory;
 use Illuminate\Http\Request;
+
 
 class ITServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    //index
     public function index()
     {
-        //
+        return view('backend.itService.index',[
+            'itServices'   => ITService::all(),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    //create
     public function create()
     {
-        //
+        return view('backend.itService.create',[
+            'itServiceCategories'   => ITServiceCategory::where('status',1)->get(),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+//    store
     public function store(Request $request)
     {
-        //
+        ITService::saveData($request);
+        return redirect()
+            ->back()
+            ->with('message','');
+    }
+//     detail
+    public function show($id)
+    {
+
+
+        return view('backend.itService.detail',[
+            'itService' => ITService::find($id),
+
+        ]);
+    }
+//     edit
+    public function edit($id)
+    {
+
+        return view('backend.itService.edit',[
+            'itService' => ITService::find($id),
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    //     update
+    public function update(Request $request, $id)
     {
-        //
+        ITService::updateData($request, $id);
+        return redirect()
+            ->route('itService.index')
+            ->with('update','');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+//    delete
+    public function destroy($id)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        ITService::deleteData($id);
+        return redirect()
+            ->back()
+            ->with('delete', '');
     }
 }

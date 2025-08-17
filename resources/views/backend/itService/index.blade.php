@@ -10,7 +10,7 @@
                 <div class="card-header d-flex justify-content-between mb-4">
                     <div>
 
-                        <a href="{{route('training.create')}}" class="btn btn-sm btn-info" >
+                        <a href="{{route('itService.create')}}" class="btn btn-sm btn-info" >
                             <i class="fa fa-plus-circle me-2"></i>
                             Add New</a>
                     </div>
@@ -27,8 +27,8 @@
                         <thead>
                         <tr>
                             <th>S/N</th>
-                            <th>Training Name</th>
-                            <th>Training Categroy</th>
+                            <th> Name</th>
+                            <th> Category</th>
                             <th>Auth</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -38,28 +38,22 @@
                         @php
                             $sl = 1;
                         @endphp
-                        @foreach($trainings as $training)
+                        @foreach($itServices as $item)
                         <tr>
                             <td>{{$sl++}}</td>
-                            <td>{{$training->training_name}}</td>
-                            <td>{{$training->trainingCategory->training_category}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->category->name}}</td>
                             <td>{{Auth::user()->name}}</td>
                             <td>
-                                <label class="{{$training->status === 1 ? 'badge badge-success' : 'badge badge-warning'}} w-100 ">
-                                    {{$training->status===1 ? 'Published' : 'On Hold'}}
+                                <label class="{{$item->status === 1 ? 'badge badge-success' : 'badge badge-warning'}} w-100 ">
+                                    {{$item->status===1 ? 'Published' : 'On Hold'}}
                                 </label>
                             </td>
                             <td>
-                                @if($training->status ==0)
-                                    <a href="{{route('training.status', $training->id)}}" data-toggle="tooltip" data-placement="bottom" title="Published"  class="btn btn-info"><i class="fa fa-location-arrow "></i></a>
-                                @else
-                                    <a href="{{route('training.status', $training->id)}}" data-toggle="tooltip" data-placement="bottom" title="On Hold" class="btn btn-warning"><i class="fa fa-location-arrow"></i></a>
-                                @endif
 
-
-                                <a href="{{route('training.detail', $training->id)}}" data-toggle="tooltip" data-placement="bottom" title="View" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                                <a href="{{route('training.edit', $training->id)}}"  data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                <a href="{{route('training.delete', $training->id)}}" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                <a href="{{route('itService.show', $item->id)}}" data-toggle="tooltip" data-placement="bottom" title="View" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                <a href="{{route('itService.edit', $item->id)}}"  data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="{{route('itService.destroy', $item->id)}}" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 
                             </td>
                         </tr>

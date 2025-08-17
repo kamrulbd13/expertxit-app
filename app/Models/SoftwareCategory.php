@@ -56,9 +56,9 @@ class SoftwareCategory extends Model
 
 
 //    with training
-    public function trainings()
+    public function softwares()
     {
-        return $this->hasMany(Training::class, 'training_category_id'); // Adjust 'category_id' if different
+        return $this->hasMany(Software::class, 'software_category_id'); // Adjust 'category_id' if different
     }
 
 
