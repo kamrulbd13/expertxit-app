@@ -16,90 +16,122 @@ class KidsProgrammeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    //index
     public function index()
     {
-        return view('backend.kidsProgramming.index', [
-            'kidsProgrammings' => KidsProgramming::with('category')->get(),
-        ]);
+        $kidsProgrammings = KidsProgramming::with('category')->get();
+
+        return view('backend.kidsProgramming.index', compact('kidsProgrammings'));
     }
 
-    //create
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('backend.kidsProgramming.create',[
-            'kidsProgrammeCategories'   => KidsProgrammingCategory::where('status',1)->get(),
-            'trainers'             => Trainer::where('status',1)->get(),
-            'trainerTypes'         => TrainerType::where('status',1)->get(),
-            'languages'            => Language::where('status',1)->get(),
-            'skillLevels'         => SkillLevel::where('status',1)->get(),
-        ]);
+        $kidsProgrammeCategories = KidsProgrammingCategory::where('status', 1)->get();
+        $trainers = Trainer::where('status', 1)->get();
+        $trainerTypes = TrainerType::where('status', 1)->get();
+        $languages = Language::where('status', 1)->get();
+        $skillLevels = SkillLevel::where('status', 1)->get();
+
+        return view('backend.kidsProgramming.create', compact(
+            'kidsProgrammeCategories',
+            'trainers',
+            'trainerTypes',
+            'languages',
+            'skillLevels'
+        ));
     }
 
-//    store
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
+
         KidsProgramming::saveData($request);
-        return redirect()
-            ->back()
-            ->with('message','');
+
+        return redirect()->back()->with('message', 'Kids Programming created successfully!');
     }
-//     detail
+
+    /**
+     * Display the specified resource.
+     */
     public function detail($id)
     {
+        $kidsProgramme = KidsProgramming::with('kidsProgrammeCurricula')->findOrFail($id);
+        $curricula = $kidsProgramme->kidsProgrammeCurricula;
 
-        $training = KidsProgramming::with('trainingCurricula')->find($id);
-        $curricula = $training->trainingCurricula;
-        return view('backend.training.detail',[
-            'training'    => Training::find($id),
-            'trainingCategories'    => TrainingCategory::where('status',1)->get(),
-            'trainers'             => Trainer::where('status',1)->get(),
-            'trainerTypes'         => TrainerType::where('status',1)->get(),
-            'languages'            => Language::where('status',1)->get(),
-            'skillLevels'         => SkillLevel::where('status',1)->get(),
-            'training'            => $training,
-            'curricula'            => $curricula,
-        ]);
+        $kidsProgrammeCategories = KidsProgrammingCategory::where('status', 1)->get();
+        $trainers = Trainer::where('status', 1)->get();
+        $trainerTypes = TrainerType::where('status', 1)->get();
+        $languages = Language::where('status', 1)->get();
+        $skillLevels = SkillLevel::where('status', 1)->get();
+
+        return view('backend.kidsProgramming.detail', compact(
+            'kidsProgramme',
+            'curricula',
+            'kidsProgrammeCategories',
+            'trainers',
+            'trainerTypes',
+            'languages',
+            'skillLevels'
+        ));
     }
-//     edit
+
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit($id)
     {
-        $training = KidsProgramming::with('trainingCurricula')->find($id);
-        $curricula = $training->trainingCurricula;
-        return view('backend.kidsProgramming.edit',[
-            'kidsProgrammeCategories'    => KidsProgrammingCategory::where('status',1)->get(),
-            'trainers'             => Trainer::where('status',1)->get(),
-            'trainerTypes'         => TrainerType::where('status',1)->get(),
-            'languages'            => Language::where('status',1)->get(),
-            'skillLevels'         => SkillLevel::where('status',1)->get(),
-            'training'            => $training,
-            'curricula'            => $curricula,
-        ]);
+        $kidsProgramme = KidsProgramming::with('kidsProgrammeCurricula')->findOrFail($id);
+        $curricula = $kidsProgramme->kidsProgrammeCurricula;
+
+        $kidsProgrammeCategories = KidsProgrammingCategory::where('status', 1)->get();
+        $trainers = Trainer::where('status', 1)->get();
+        $trainerTypes = TrainerType::where('status', 1)->get();
+        $languages = Language::where('status', 1)->get();
+        $skillLevels = SkillLevel::where('status', 1)->get();
+
+        return view('backend.kidsProgramming.edit', compact(
+            'kidsProgramme',
+            'curricula',
+            'kidsProgrammeCategories',
+            'trainers',
+            'trainerTypes',
+            'languages',
+            'skillLevels'
+        ));
     }
 
-    //     update
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id)
     {
+
         KidsProgramming::updateData($request, $id);
-        return redirect()
-            ->route('kidsProgramme.index')
-            ->with('update','');
+
+        return redirect()->route('kidsProgramme.index')->with('update', 'Kids Programming updated successfully!');
     }
 
-//      status
+    /**
+     * Update status of the specified resource.
+     */
     public function status($id)
     {
         KidsProgramming::statusUpdate($id);
-        return redirect()
-            ->back()
-            ->with('status', '');
+
+        return redirect()->back()->with('status', 'Status updated successfully!');
     }
-//    delete
+
+    /**
+     * Remove the specified resource from storage.
+     */
     public function delete($id)
     {
         KidsProgramming::deleteData($id);
-        return redirect()
-            ->back()
-            ->with('delete', '');
+
+        return redirect()->back()->with('delete', 'Kids Programming deleted successfully!');
     }
 }

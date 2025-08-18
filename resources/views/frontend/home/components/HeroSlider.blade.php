@@ -58,7 +58,7 @@
                     <div class="col-lg-7">
                         <h1 class="display-6 fw-bold text-white">Transform Your Business with Digital Solutions</h1>
                         <p class="lead mt-3">
-                            ExpertX Solutions provides cutting-edge IT services, custom software development, professional training, and strategic consulting to help your business thrive in the digital age.
+                            ExpertX Information & Technology provides cutting-edge IT services, custom software development, professional training, and strategic consulting to help your business thrive in the digital age.
                         </p>
                         <div class="mt-4">
                             <a href="#contact" class="btn btn-light btn-lg me-2"><i class="fas fa-phone me-1"></i> Contact Us</a>
@@ -131,7 +131,7 @@
             <div class="hero-slide">
                 <div class="row align-items-center">
                     <div class="col-lg-7">
-                        <h1 class="display-6 fw-bold text-white">Innovate Your Future with ExpertX IT Services</h1>
+                        <h1 class="display-6 fw-bold text-white">Innovate Your Future with ExpertX Information & Technology Services</h1>
                         <p class="lead mt-3">
                             We deliver tailored software solutions and training to empower your team and accelerate growth.
                         </p>
@@ -198,7 +198,7 @@
             <div class="hero-slide">
                 <div class="row align-items-center">
                     <div class="col-lg-7">
-                        <h1 class="display-6 fw-bold text-white">Innovate Your Future with ExpertX IT Services</h1>
+                        <h1 class="display-6 fw-bold text-white">Innovate Your Future with ExpertX Information & Technology Services</h1>
                         <p class="lead mt-3">
                             We deliver tailored software solutions and training to empower your team and accelerate growth.
                         </p>

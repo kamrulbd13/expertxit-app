@@ -159,7 +159,9 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::prefix('kidsProgramme')->as('kidsProgramme.')->group(function () {
         Route::resource('category', KidsProgrammeCategoryController::class);
-        Route::resource('', KidsProgrammeController::class);
+        Route::resource('/', KidsProgrammeController::class)->parameters([
+            '' => 'id',
+        ]);
     });
 
     //    Training Category

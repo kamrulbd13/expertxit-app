@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('kids_programing_curricula', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kidsProgramme_id');  // define column with custom name
-
            $table->string('title')->nullable();
             $table->string('sub_title')->nullable();
             $table->text('description')->nullable();

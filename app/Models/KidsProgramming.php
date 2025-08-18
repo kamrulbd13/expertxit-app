@@ -70,93 +70,112 @@ class KidsProgramming extends Model
         $programme->author_id = Auth::id();
         $programme->save();
 
-        if (!empty($request->kidsProgrammeCurriculum)) {
-            foreach ($request->kidsProgrammeCurriculum as $item) {
-                $programme->kidsProgrammeCurricula()->create([
-                    'kids_programme_id' => $programme->kidsProgramme_id,
-                    'title'       => $item['title'],
-                    'sub_title'   => $item['sub_title'] ?? null,
-                    'description' => $item['description'] ?? null,
-                    'duration'    => $item['duration'],
-                ]);
+// Save Curricula
+        $curriculaData = $request->trainingCurriculum; // use the correct key from the request
+
+        if (!empty($curriculaData) && is_array($curriculaData)) {
+            foreach ($curriculaData as $item) {
+                if (!empty($item['title'])) {
+                    $programme->kidsProgrammeCurricula()->create([
+                        'kidsProgramme_id' => $programme->id,
+                        'title' => $item['title'],
+                        'sub_title' => $item['sub_title'] ?? null,
+                        'description' => $item['description'] ?? null,
+                        'duration' => $item['duration'] ?? null,
+                    ]);
+                }
             }
         }
+
+        return $programme;
     }
 
     public static function updateData($request, $id)
     {
+
         $programme = self::findOrFail($id);
 
-        $programme->kidsProgramme_name = $request->kidsProgramme_name;
-        $programme->kidsProgramming_category_id = $request->kidsProgramming_category_id;
-        $programme->trainer_id = $request->trainer_id;
-        $programme->trainer_type_id = $request->trainer_type_id;
-        $programme->skill_level_id = $request->skill_level_id;
-        $programme->language_id = $request->language_id;
-        $programme->trainingDetails = $request->trainingDetails;
-        $programme->learning_outcome = $request->learning_outcome;
-        $programme->lecture = $request->lecture;
-        $programme->duration = $request->duration;
-        $programme->assessment = $request->assessment;
-        $programme->quizzes = $request->quizzes;
-        $programme->prerequisite = $request->prerequisite;
-        $programme->certification = $request->certification;
-        $programme->regular_fees = $request->regular_fees;
-        $programme->current_fees = $request->current_fees;
-        $programme->status = $request->status;
-        $programme->author_id = Auth::id();
+        // Update main programme
+        $programme->update([
+            'kidsProgramme_name' => $request->kidsProgramme_name,
+            'kidsProgramming_category_id' => $request->kidsProgramming_category_id,
+            'trainer_id' => $request->trainer_id,
+            'trainer_type_id' => $request->trainer_type_id,
+            'skill_level_id' => $request->skill_level_id,
+            'language_id' => $request->language_id,
+            'trainingDetails' => $request->trainingDetails,
+            'learning_outcome' => $request->learning_outcome,
+            'lecture' => $request->lecture,
+            'duration' => $request->duration,
+            'assessment' => $request->assessment,
+            'quizzes' => $request->quizzes,
+            'prerequisite' => $request->prerequisite,
+            'certification' => $request->certification,
+            'regular_fees' => $request->regular_fees,
+            'current_fees' => $request->current_fees,
+            'status' => $request->status,
+            'author_id' => Auth::id(),
+        ]);
 
+        // Handle image upload
         if ($request->hasFile('image')) {
             if ($programme->image_path && file_exists(public_path($programme->image_path))) {
                 unlink(public_path($programme->image_path));
             }
             $programme->image_path = self::handleImageUpload($request);
+            $programme->save();
         }
 
-        $programme->save();
-
-        // Sync Curriculum
+        // Sync Curricula
+        $curriculaData = $request->trainingCurriculum ?? []; // match the request input name
         $existingIds = $programme->kidsProgrammeCurricula()->pluck('id')->toArray();
         $incomingIds = [];
 
-        foreach ($request->kidsProgrammeCurriculum as $item) {
-            if (!empty($item['id']) && in_array($item['id'], $existingIds)) {
-                $programme->kidsProgrammeCurricula()
-                    ->where('id', $item['id'])
-                    ->update([
-                        'title'       => $item['title'],
-                        'sub_title'   => $item['sub_title'] ?? null,
+        if (!empty($curriculaData) && is_array($curriculaData)) {
+            foreach ($curriculaData as $item) {
+                if (!empty($item['id']) && in_array($item['id'], $existingIds)) {
+                    // Update existing curriculum
+                    $programme->kidsProgrammeCurricula()->where('id', $item['id'])->update([
+                        'title' => $item['title'],
+                        'sub_title' => $item['sub_title'] ?? null,
                         'description' => $item['description'] ?? null,
-                        'duration'    => $item['duration'],
+                        'duration' => $item['duration'] ?? null,
                     ]);
-                $incomingIds[] = $item['id'];
-            } else {
-                $new = $programme->kidsProgrammeCurricula()->create([
-                    'kids_programme_id' => $programme->kidsProgramme_id,
-                    'title'       => $item['title'],
-                    'sub_title'   => $item['sub_title'] ?? null,
-                    'description' => $item['description'] ?? null,
-                    'duration'    => $item['duration'],
-                ]);
-                $incomingIds[] = $new->id;
+                    $incomingIds[] = $item['id'];
+                } elseif (!empty($item['title'])) {
+                    // Create new curriculum
+                    $new = $programme->kidsProgrammeCurricula()->create([
+                        'kidsProgramme_id' => $programme->id,
+                        'title' => $item['title'],
+                        'sub_title' => $item['sub_title'] ?? null,
+                        'description' => $item['description'] ?? null,
+                        'duration' => $item['duration'] ?? null,
+                    ]);
+                    $incomingIds[] = $new->id;
+                }
             }
         }
 
+        // Delete removed curricula
         $toDelete = array_diff($existingIds, $incomingIds);
         if (!empty($toDelete)) {
             $programme->kidsProgrammeCurricula()->whereIn('id', $toDelete)->delete();
         }
+
+        return $programme;
     }
 
-    protected static function handleImageUpload($request)
+
+    public static function handleImageUpload($request)
     {
         if ($request->hasFile('image')) {
-            $image      = $request->file('image');
-            $imageName  = uniqid('kp_') . '.' . $image->getClientOriginalExtension();
-            $directory  = 'backend/images/kidsProgramme/';
+            $image = $request->file('image');
+            $imageName = uniqid('kp_') . '.' . $image->getClientOriginalExtension();
+            $directory = 'backend/images/kidsProgramme/';
             $image->move(public_path($directory), $imageName);
             return $directory . $imageName;
         }
+
         return 'backend/images/kidsProgramme/defaultImage.jpg';
     }
 
@@ -165,6 +184,8 @@ class KidsProgramming extends Model
         $programme = self::findOrFail($id);
         $programme->status = !$programme->status;
         $programme->save();
+
+        return $programme;
     }
 
     public static function deleteData($id)
@@ -186,26 +207,32 @@ class KidsProgramming extends Model
 
     public function kidsProgrammeCurricula()
     {
-        return $this->hasMany(KidsProgramingCurriculum::class, 'kids_programme_id', 'kidsProgramme_id');
+        return $this->hasMany(KidsProgramingCurriculum::class, 'kidsProgramme_id', 'id');
     }
 
-    //    many ot one with skillLevel
-    public function skillLevel(){
+    public function kidsProgrammeCurriculum()
+    {
+        return $this->hasMany(KidsProgramingCurriculum::class, 'kidsProgramme_id', 'id');
+    }
+
+
+    public function skillLevel()
+    {
         return $this->belongsTo(SkillLevel::class);
     }
 
-    //    many ot one with tlanguage
-    public function language(){
+    public function language()
+    {
         return $this->belongsTo(Language::class);
     }
 
-    //    many ot one with trainer
-    public function trainer(){
+    public function trainer()
+    {
         return $this->belongsTo(Trainer::class);
     }
 
-    //    many ot one with trainer type
-    public function trainerType(){
+    public function trainerType()
+    {
         return $this->belongsTo(TrainerType::class);
     }
 
@@ -213,6 +240,4 @@ class KidsProgramming extends Model
     {
         return $this->belongsTo(KidsProgrammingCategory::class, 'kidsProgramming_category_id');
     }
-
-
 }

@@ -164,17 +164,18 @@
                                 <!-- Curriculum Tab -->
                                 <div class="tab-pane fade" id="curriculum" role="tabpanel">
                                     <h4 class="fw-bold mb-3">Learning Journey</h4>
-                                    @if($details->trainingCurriculam && $details->trainingCurriculam->count())
+
+                                    @if($details->kidsProgrammeCurricula && $details->kidsProgrammeCurricula->count())
                                         <div class="accordion" id="curriculumAccordion">
-                                            @foreach($details->trainingCurriculam as $index => $item)
+                                            @foreach($details->kidsProgrammeCurricula as $index => $item)
                                                 <div class="accordion-item mb-2 border-0 rounded-3 overflow-hidden shadow-sm">
                                                     <h2 class="accordion-header" id="heading{{ $index }}">
                                                         <button class="accordion-button collapsed fw-semibold d-flex align-items-center"
                                                                 type="button" data-bs-toggle="collapse"
                                                                 data-bs-target="#collapse{{ $index }}">
-                                                            <span class="badge rounded-pill me-3 module-badge">
-                                                                {{ $index + 1 }}
-                                                            </span>
+                            <span class="badge rounded-pill me-3 module-badge">
+                                {{ $index + 1 }}
+                            </span>
                                                             {{ $item->title }}
                                                         </button>
                                                     </h2>
@@ -193,6 +194,7 @@
                                         </div>
                                     @endif
                                 </div>
+
                             </div>
                         </div>
                     </div>
