@@ -55,8 +55,8 @@
                             $tabs = [
                                 ['id'=>'desc', 'icon'=>'bi-info-circle', 'title'=>'Overview'],
                                 ['id'=>'features', 'icon'=>'bi-list-check', 'title'=>'Features'],
-                                ['id'=>'modules', 'icon'=>'bi-layers', 'title'=>'Modules'],
-                                ['id'=>'benefits', 'icon'=>'bi-graph-up', 'title'=>'Benefits']
+                                ['id'=>'modules', 'icon'=>'bi-layers', 'title'=>'Advanced Support'],
+                                ['id'=>'benefits', 'icon'=>'bi-graph-up', 'title'=>'Stakeholder Benefits']
                             ];
                         @endphp
                         @foreach($tabs as $tab)
@@ -102,6 +102,7 @@
 
                         <!-- Features -->
                         <div class="tab-pane fade" id="features">
+                            <h3 class="fw-bold mb-4">Service Features</h3>
                             @if($details->core_features)
                                 <div class="row g-4">
                                     {!! $details->core_features !!}
@@ -113,6 +114,7 @@
 
                         <!-- Modules -->
                         <div class="tab-pane fade" id="modules">
+                            <h3 class="fw-bold mb-4">Advanced Support</h3>
                             @if($details->advanced_modules)
                                 <div class="accordion" id="modulesAccordion">
                                     {!! $details->advanced_modules !!}
@@ -124,6 +126,7 @@
 
                         <!-- Benefits -->
                         <div class="tab-pane fade" id="benefits">
+                            <h3 class="fw-bold mb-4">Stakeholder Benefits</h3>
                             {!! $details->benefits_for_every_stakeholder ?? '<div class="alert alert-info">No benefits information available.</div>' !!}
                         </div>
                     </div>
