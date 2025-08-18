@@ -90,16 +90,34 @@
             display: block;
             max-height: 70vh;
             overflow-y: auto;
+            border: 1px solid var(--border) !important;
+            margin-top: 0.5rem !important;
         }
         .mega-menu .row {
             display: block !important;
+            margin-left: 0;
+            margin-right: 0;
         }
-        .mega-menu .col-md-6, .mega-menu .col-md-4 {
+        .mega-menu .col-md-6,
+        .mega-menu .col-md-4 {
             width: 100% !important;
+            margin-bottom: 1.5rem;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .mega-menu h6 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .mega-menu a {
+            font-size: 0.9rem;
+            padding: 0.35rem 0;
+        }
+        .mega-menu ul {
             margin-bottom: 1rem;
         }
-        .mega-menu h6 { font-size: 1rem; margin-bottom: 0.5rem; }
-        .mega-menu a { font-size: 0.9rem; }
     }
 </style>
 
