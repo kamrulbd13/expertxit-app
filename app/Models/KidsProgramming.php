@@ -9,6 +9,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 class KidsProgramming extends Model
 {
     protected $table = 'kids_programmings';
+    public static $data, $image, $imageName, $directory, $extension, $imgURL;
 
     protected $fillable = [
         'kidsProgramme_id',
@@ -65,7 +66,7 @@ class KidsProgramming extends Model
         $programme->certification = $request->certification;
         $programme->regular_fees = $request->regular_fees;
         $programme->current_fees = $request->current_fees;
-        $programme->image_path = self::handleImageUpload($request);
+        $programme->image_path = self::getImageUrl($request);
         $programme->status = $request->status ?? 1;
         $programme->author_id = Auth::id();
         $programme->save();
@@ -122,7 +123,7 @@ class KidsProgramming extends Model
             if ($programme->image_path && file_exists(public_path($programme->image_path))) {
                 unlink(public_path($programme->image_path));
             }
-            $programme->image_path = self::handleImageUpload($request);
+            $programme->image_path = self::getImageUrl($request);
             $programme->save();
         }
 
@@ -166,18 +167,22 @@ class KidsProgramming extends Model
     }
 
 
-    public static function handleImageUpload($request)
-    {
+//    image url
+    public static function getImageUrl($request){
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = uniqid('kp_') . '.' . $image->getClientOriginalExtension();
-            $directory = 'backend/images/kidsProgramme/';
-            $image->move(public_path($directory), $imageName);
-            return $directory . $imageName;
+            self::$image = $request->file('image');
+            self::$extension = self::$image->extension();
+            self::$imageName = $request->name .'.'. uniqid() . '.' . self::$extension;
+            self::$directory = 'backend/images/kidsProgramme/';
+            self::$image->move(self::$directory, self::$imageName);
+            self::$imgURL = self::$directory . self::$imageName;
+        } else {
+            // Set default image URL if no file is uploaded
+            self::$imgURL = 'backend/images/kidsProgramme/defaultImage.jpg';
         }
-
-        return 'backend/images/kidsProgramme/defaultImage.jpg';
+        return self::$imgURL;
     }
+
 
     public static function statusUpdate($id)
     {

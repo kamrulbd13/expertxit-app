@@ -150,6 +150,13 @@
                                         <i class="bi bi-list-task me-2"></i>Curriculum
                                     </button>
                                 </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link fw-bold" id="reviews-tab" data-bs-toggle="tab"
+                                            data-bs-target="#reviews" type="button"
+                                            style="color: #5a5c69;">
+                                        <i class="bi bi-star-fill me-2"></i>Reviews
+                                    </button>
+                                </li>
                             </ul>
 
                             <div class="tab-content">
@@ -194,7 +201,17 @@
                                         </div>
                                     @endif
                                 </div>
-
+                                <!-- Reviews Tab -->
+                                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                    <div class="text-center py-4">
+                                        <i class="bi bi-star-fill display-4 text-warning mb-3"></i>
+                                        <h4 class="fw-bold mb-2">No Reviews Yet</h4>
+                                        <p class="text-muted mb-3">Be the first to review this training</p>
+                                        <button class="btn btn-outline-primary">
+                                            <i class="bi bi-pencil-square me-2"></i>Write a Review
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -209,20 +226,21 @@
                             <div class="d-flex align-items-center mb-3">
                                 <div class="flex-shrink-0">
                                     <img src="{{ asset('/backend/images/teacher/avater.png') }}"
-                                         class="rounded-circle border instructor-img"
+                                         class="rounded shadow-sm border instructor-img"
                                          alt="Instructor">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="mb-1 fw-bold">{{ $details->trainer->trainer_name ?? 'Friendly Teacher' }}</h6>
                                     <p class="text-muted small mb-2">Kids Learning Specialist</p>
                                     <div class="d-flex">
-                                        <a href="#" class="btn btn-sm btn-outline-primary me-2 rounded-circle social-btn">
+                                        <a href="#" class="btn btn-sm btn-outline-primary me-2 rounded social-btn d-flex align-items-center justify-content-center">
                                             <i class="bi bi-envelope"></i>
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle social-btn">
+                                        <a href="#" class="btn btn-sm btn-outline-primary rounded social-btn d-flex align-items-center justify-content-center">
                                             <i class="bi bi-chat-left-text"></i>
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="instructor-bio">
@@ -340,7 +358,7 @@
         }
 
         .badge-popular {
-            background-color: var(--pink) !important;
+            background-color: var(--accent) !important;
             color: white !important;
         }
 
@@ -419,6 +437,10 @@
         .social-btn {
             width: 36px;
             height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0; /* remove extra padding */
         }
 
         /* Features */

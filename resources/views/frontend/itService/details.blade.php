@@ -24,7 +24,7 @@
                     <div class="position-relative rounded-4 overflow-hidden shadow-lg">
                         <img src="{{ asset($details->image_path ?? 'frontend/images/service-hero.jpg') }}"
                              class="img-fluid w-100 rounded"
-                             style="min-height: 350px; object-fit: cover;"
+                             style="height: 350px; object-fit: cover; width: 100%;"
                              alt="{{ $details->name ?? 'Service Image' }}" loading="lazy">
                         <div class="position-absolute bottom-0 start-50 translate-middle-x mb-3">
                             <div class="bg-white p-2 rounded-3 shadow-sm text-center hero-trust">

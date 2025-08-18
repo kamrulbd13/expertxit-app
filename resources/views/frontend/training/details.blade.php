@@ -235,15 +235,16 @@
                                     <h6 class="mb-1 fw-bold">{{ $details->trainer->trainer_name ?? 'Expert Trainer' }}</h6>
                                     <p class="text-muted small mb-2">Professional Instructor</p>
                                     <div class="d-flex">
-                                        <a href="#" class="btn btn-sm btn-outline-primary me-2 rounded-circle"
+                                        <a href="#" class="btn btn-sm btn-outline-primary me-2 rounded-circle d-flex align-items-center justify-content-center"
                                            style="width: 36px; height: 36px;">
                                             <i class="bi bi-envelope"></i>
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"
+                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle d-flex align-items-center justify-content-center"
                                            style="width: 36px; height: 36px;">
                                             <i class="bi bi-chat-left-text"></i>
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="instructor-bio">
