@@ -80,25 +80,29 @@
 
                 <!-- Enrollment Card with Fun Design -->
                 <div class="col-lg-4 mt-4 mt-lg-0">
-                    <div class="card enrollment-card">
+                    <div class="card enrollment-card shadow-sm">
                         <div class="position-relative">
                             <img src="{{ asset($details->image_path ?? 'placeholder.jpg') }}"
                                  class="card-img-top"
                                  alt="Kids Program">
-                            <div class="position-absolute top-0 end-0 m-3">
-                                <span class="badge rounded-pill px-3 py-2 badge-popular">
-                                    <i class="bi bi-heart-fill me-1"></i> Popular
-                                </span>
-                            </div>
+{{--                            <div class="position-absolute top-0 end-0 m-3">--}}
+{{--                                <span class="badge rounded-pill px-3 py-2 badge-popular">--}}
+{{--                                    <i class="bi bi-heart-fill me-1"></i> Popular--}}
+{{--                                </span>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0 fw-bold program-price">
-                                    Tk. {{ $details->current_fees ?? '5000' }}
+                                <h4 class="mb-0 fw-bold" style="color: #2c3e50;">
+                                    @if($details->current_fees == 0)
+                                        <span class="badge bg-success px-3 py-2" style="font-size: 0.9rem;">Free</span>
+                                    @else
+                                        Tk. {{ number_format($details->current_fees, 2) }}
+                                    @endif
                                 </h4>
                                 @if(!empty($details->regular_fees))
-                                    <span class="text-decoration-line-through text-muted">
-                                        Tk. {{ $details->regular_fees }}
+                                    <span class="text-decoration-line-through text-danger">
+                                        Tk. {{ number_format($details->regular_fees, 2) }}
                                     </span>
                                 @endif
                             </div>
@@ -396,9 +400,8 @@
         /* Cards */
         .enrollment-card {
             border: 0;
-            border-radius: 15px;
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
         }
 
         .enrollment-card .card-img-top {
@@ -412,7 +415,7 @@
 
         .content-card, .instructor-card, .info-card {
             border: 0;
-            border-radius: 12px;
+            border-radius: 5px;
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
         }
 
@@ -420,7 +423,7 @@
         .enroll-btn {
             background-color: var(--primary);
             color: white;
-            border-radius: 8px;
+            border-radius: 5px;
             transition: all 0.3s;
         }
 
@@ -487,7 +490,7 @@
         .program-description img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 5px;
             margin: 15px 0;
         }
 
@@ -498,7 +501,7 @@
 
         .no-reviews {
             background-color: var(--light);
-            border-radius: 12px;
+            border-radius: 5px;
         }
 
         .no-reviews i {

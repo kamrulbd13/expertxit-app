@@ -10,7 +10,6 @@
         --border: #e2e8f0;
     }
 
-
     a { text-decoration:none; color: var(--dark); transition: 0.2s; }
     a:hover, a:focus { color: var(--primary); outline:none; }
 
@@ -18,6 +17,7 @@
     .btn-primary { background-color: var(--primary); border:2px solid var(--primary); color:white; }
     .btn-primary:hover, .btn-primary:focus { background-color: var(--primary-dark); border-color: var(--primary-dark); }
 
+    /* Topbar */
     .topbar { background: var(--dark); color:#f1f5f9; font-size:0.875rem; padding:0.45rem 0; }
     .topbar a { color: #cbd5e1; }
     .topbar a:hover, .topbar a:focus { color: var(--primary-light); }
@@ -25,40 +25,93 @@
     .topbar .social a:hover, .topbar .social a:focus { color: var(--primary); }
     .topbar .vr { width:1px; background: rgba(255,255,255,0.15); margin:0 0.75rem; height:14px; }
 
-    .navbar { background:white; box-shadow:0 2px 15px rgba(18,38,63,0.08); position:sticky; top:0; z-index:1030; padding:1rem 0; }
-    .navbar-brand { display:flex; align-items:center; padding-left:2rem; }
+    /* Navbar */
+    .navbar { background:white; box-shadow:0 2px 15px rgba(18,38,63,0.08); position:sticky; top:0; z-index:1030; padding:.2rem 0; }
+    .navbar-brand { display:flex; align-items:center; padding-left:1rem; }
     .logo-box { width:180px; height:60px; display:flex; align-items:center; }
     .logo-box img { max-height:60px; width:auto; }
-    .nav-link { font-weight:600; padding:0.5rem 1.1rem; color: var(--dark); display:flex; align-items:center; gap:0.5rem; }
+    .nav-link { font-weight:600; padding:0.5rem 0.5rem; color: var(--dark); display:flex; align-items:center; gap:0.5rem; }
     .nav-link:hover, .nav-link:focus { color: var(--primary); }
     .nav-link.active { color: var(--primary); }
 
-    .dropdown-menu.mega-menu { position:absolute !important; top:100% !important; left:50% !important; transform: translateX(-50%) !important; width:820px; padding:2rem; border-radius:0 0 12px 12px; box-shadow:0 12px 30px rgba(32,45,60,0.12); background:white; border:none; z-index:1100; display:flex; flex-wrap:wrap; gap:2rem; }
-    .mega-menu h6 { color: var(--primary); font-size:0.9rem; margin-bottom:0.75rem; font-weight:700; display:flex; align-items:center; gap:0.5rem; text-transform:uppercase; }
+    /* Mega Menu Desktop */
+    .dropdown-menu.mega-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 820px;
+        padding: 2rem;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 12px 30px rgba(32,45,60,0.12);
+        background:white;
+        border:none;
+        z-index:1100;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .mega-menu h6 {
+        color: var(--primary);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        font-weight:700;
+        display:flex;
+        align-items:center;
+        gap:0.5rem;
+        text-transform:uppercase;
+    }
     .mega-menu ul { padding:0; margin:0; list-style:none; }
-    .mega-menu li { margin-bottom:0.4rem; }
-    .mega-menu a { display:flex; align-items:center; font-weight:500; font-size:0.95rem; color: var(--dark); gap:0.5rem; padding:3px 0; transition:0.2s ease; }
-    .mega-menu a i { width:1.4rem; text-align:center; font-size:1.1rem; color:var(--accent); }
+    .mega-menu li { margin-bottom:0.35rem; }
+    .mega-menu a {
+        display:flex;
+        align-items:center;
+        font-weight:500;
+        font-size:0.85rem;
+        color: var(--dark);
+        gap:0.4rem;
+        padding:3px 0;
+        transition:0.2s ease;
+    }
+    .mega-menu a i { width:1.4rem; text-align:center; font-size:1.05rem; color:var(--accent); }
     .mega-menu a:hover, .mega-menu a:focus { color: var(--primary); }
     .mega-menu a.selected { color: var(--primary-dark); font-weight:600; }
-    .mega-menu a:hover, .mega-menu a.selected { background:none; }
 
+    /* Mobile Responsive */
     @media (max-width: 991px) {
-        .navbar-brand { padding-left:1rem; }
-        .logo-box { width:140px; height:50px; }
-        .dropdown-menu.mega-menu { width:95vw !important; left:50% !important; transform:translateX(-50%); padding:1rem 1.5rem; border-radius:0 0 10px 10px; flex-direction:column; gap:1.5rem; }
+        .dropdown-menu.mega-menu {
+            position: static !important;
+            transform: none !important;
+            width: 100% !important;
+            padding: 1rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: none;
+            display: block;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .mega-menu .row {
+            display: block !important;
+        }
+        .mega-menu .col-md-6, .mega-menu .col-md-4 {
+            width: 100% !important;
+            margin-bottom: 1rem;
+        }
+        .mega-menu h6 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .mega-menu a { font-size: 0.9rem; }
     }
 </style>
 
 <!-- Topbar -->
 <div class="topbar" role="region" aria-label="Contact and social media info">
-    <div class="container d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-            <div><a href="https://chat.whatsapp.com/Bk1YllhplYMDnujwlshHGs?mode=ac_t"><i class="fas fa-users me-2" aria-hidden="true"></i>Join Our Team</a></div>
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <div class="d-flex align-items-center flex-wrap">
+            <div><a href="#"><i class="fas fa-users me-2" aria-hidden="true"></i>Join Our Team</a></div>
             <div class="vr"></div>
             <div><i class="fas fa-envelope me-2" aria-hidden="true"></i><a href="mailto:{{$systemInfo->mail1 ?? ''}}">{{$systemInfo->mail1 ?? ''}}</a></div>
         </div>
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center flex-wrap mt-2 mt-lg-0">
             <span class="me-1">Follow:</span>
             <div class="social" role="list" aria-label="Social media links">
                 <a href="#" aria-label="Facebook" role="listitem"><i class="fab fa-facebook-f"></i></a>
@@ -73,24 +126,16 @@
 <!-- Navbar -->
 <header class="navbar navbar-expand-lg" role="banner">
     <div class="container">
-        <!-- Logo -->
         <a href="{{route('home')}}" class="navbar-brand" aria-label="Homepage">
-            @php
-                $logoWidth = $systemInfo->logo_width ?? 200;
-                $logoHeight = $systemInfo->logo_height ?? 0;
-                $isSquare = $logoWidth == $logoHeight;
-            @endphp
-            <div class="logo-box" style="width: {{ $isSquare ? '150px' : '200px' }}; height: 60px;">
+            <div class="logo-box" style="width: 200px; height:60px;">
                 <img src="{{ asset($systemInfo->image_logo_color ?? '') }}" alt="ExpertX Solutions Logo" />
             </div>
         </a>
 
-        <!-- Toggler button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
                 aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
 
         <nav class="collapse navbar-collapse" id="mainNav" role="navigation" aria-label="Primary navigation">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -106,7 +151,7 @@
                             @foreach($softwareCategories as $category)
                                 <div class="col-md-6">
                                     <h6><i class="fas fa-laptop-code"></i> {{ $category->name ?? '' }}</h6>
-                                    <ul class="list-unstyled">
+                                    <ul>
                                         @foreach($category->softwares as $item)
                                             <li>
                                                 <a href="{{ route('software.details', $item->id) }}"
@@ -133,7 +178,7 @@
                             @foreach($itServiceCategories as $category)
                                 <div class="col-md-6">
                                     <h6><i class="fas fa-server"></i> {{ $category->name ?? '' }}</h6>
-                                    <ul class="list-unstyled">
+                                    <ul>
                                         @foreach($category->itServices as $item)
                                             <li>
                                                 <a href="{{ route('itService.details', $item->id) }}"
@@ -160,7 +205,7 @@
                             @foreach($trainingCategories as $category)
                                 <div class="col-md-6">
                                     <h6><i class="fas fa-graduation-cap"></i> {{ $category->training_category ?? '' }}</h6>
-                                    <ul class="list-unstyled">
+                                    <ul>
                                         @foreach($category->trainings as $training)
                                             <li>
                                                 <a href="{{ route('details', $training->id) }}"
@@ -187,7 +232,7 @@
                             @foreach($kidsProgrammeCategories as $category)
                                 <div class="col-md-4">
                                     <h6><i class="fas fa-robot"></i> {{ $category->name ?? '' }}</h6>
-                                    <ul class="list-unstyled">
+                                    <ul>
                                         @foreach($category->kidsProgrammes as $item)
                                             <li>
                                                 <a href="{{ route('kids.programme.details', $item->id) }}"
@@ -202,7 +247,6 @@
                         </div>
                     </div>
                 </li>
-
             </ul>
 
             <div class="d-flex">

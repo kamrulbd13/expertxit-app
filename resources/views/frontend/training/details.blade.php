@@ -79,26 +79,31 @@
 
                 <!-- Enrollment Card -->
                 <div class="col-lg-4 mt-4 mt-lg-0">
-                    <div class="card border-0 shadow-lg overflow-hidden" style="border-radius: 15px;">
+                    <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 5px;">
                         <div class="position-relative">
                             <img src="{{ asset($details->image_path ?? 'placeholder.jpg') }}"
                                  class="card-img-top"
                                  style="height: 200px; object-fit: cover;"
                                  alt="Training Image">
-                            <div class="position-absolute top-0 end-0 m-3">
-                                <span class="badge rounded-pill px-3 py-2" style="background-color: #e91e63; color: white;">
-                                    <i class="bi bi-heart-fill me-1"></i> Popular
-                                </span>
-                            </div>
+{{--                            <div class="position-absolute top-0 end-0 m-3">--}}
+{{--                                <span class="badge rounded-pill px-3 py-2" style="background-color: #e91e63; color: white;">--}}
+{{--                                    <i class="bi bi-heart-fill me-1"></i> Popular--}}
+{{--                                </span>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="mb-0 fw-bold" style="color: #2c3e50;">
-                                    Tk. {{ $details->current_fees ?? '5000' }}
+                                    @if($details->current_fees == 0)
+                                        <span class="badge bg-success px-3 py-2" style="font-size: 0.9rem;">Free</span>
+                                    @else
+                                        Tk. {{ number_format($details->current_fees, 2) }}
+                                    @endif
                                 </h4>
+
                                 @if(!empty($details->regular_fees))
-                                    <span class="text-decoration-line-through text-muted">
-                                        Tk. {{ $details->regular_fees }}
+                                    <span class="text-decoration-line-through text-danger">
+                                        Tk. {{ number_format($details->regular_fees, 2) }}
                                     </span>
                                 @endif
                             </div>
@@ -132,7 +137,7 @@
             <div class="row mt-5">
                 <!-- Main Content -->
                 <div class="col-lg-8">
-                    <div class="card border-0 shadow-sm mb-4" style="border-radius: 12px;">
+                    <div class="card border-0 shadow-sm mb-4" style="border-radius: 5px;">
                         <div class="card-body">
                             <ul class="nav nav-tabs border-bottom mb-4" id="courseTab" role="tablist">
                                 <li class="nav-item" role="presentation">
@@ -221,7 +226,7 @@
                 <!-- Sidebar -->
                 <div class="col-lg-4">
                     <!-- Instructor Card -->
-                    <div class="card border-0 shadow-sm mb-4" style="border-radius: 12px;">
+                    <div class="card border-0 shadow-sm mb-4" style="border-radius: 5px;">
                         <div class="card-body">
                             <h5 class="fw-bold mb-3" style="color: #2c3e50;">Your Guide</h5>
                             <div class="d-flex align-items-center mb-3">
@@ -256,7 +261,7 @@
                     </div>
 
                     <!-- Who Can Join Card -->
-                    <div class="card border-0 shadow-sm mb-4" style="border-radius: 12px;">
+                    <div class="card border-0 shadow-sm mb-4" style="border-radius: 5px;">
                         <div class="card-body">
                             <h5 class="fw-bold mb-3" style="color: #2c3e50;">Perfect For</h5>
                             <div class="prerequisites" style="color: #5a5c69;">
@@ -266,7 +271,7 @@
                     </div>
 
                     <!-- What You'll Learn -->
-                    <div class="card border-0 shadow-sm" style="border-radius: 12px;">
+                    <div class="card border-0 shadow-sm" style="border-radius: 5px;">
                         <div class="card-body">
                             <h5 class="fw-bold mb-3" style="color: #2c3e50;">What You'll Learn</h5>
                             <ul class="list-unstyled">
