@@ -40,8 +40,14 @@
                                                     </ul>
                                                 </div>
                                                 <div class="price">
-                                                    <del>Tk.{{ $item->regular_fees ?? '' }}</del>
-                                                    <h5>Tk.{{ $item->current_fees ?? '' }}</h5>
+                                                    <del class="text-danger">Tk.{{ $item->regular_fees ?? '' }}</del>
+                                                    <h5>
+                                                        @if($item->current_fees == 0 || $item->current_fees === null)
+                                                            <span class="badge text-white px-2 py-1 bg-success">Free</span>
+                                                        @else
+                                                            <span class="text-primary">Tk. {{ number_format($item->current_fees, 0) }}</span>
+                                                        @endif
+                                                    </h5>
                                                 </div>
                                             </div>
                                         </div>

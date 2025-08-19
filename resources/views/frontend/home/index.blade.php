@@ -7,4 +7,5 @@
 @include('frontend.home.components.demo-class-practice-lab')
 @include('frontend.home.components.TeamTrainers')
 @include('frontend.home.components.VirtualTour')
+@include('frontend.home.components.OutClient')
 @endsection

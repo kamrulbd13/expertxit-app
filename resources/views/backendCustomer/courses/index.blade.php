@@ -75,8 +75,15 @@
 
                                         </li>
                                         <li class="card-courses-price">
-                                            <del>Tk.{{$item->training->regular_fees ?? ''}}</del>
-                                            <h5 class="text-primary">Tk.{{$item->training->current_fees ?? ''}}</h5>
+                                            <del class="text-danger">Tk.{{$item->training->regular_fees ?? ''}}</del>
+                                            <h5 class="text-success mb-0">
+                                                @if($item->training->current_fees == 0 || $item->training->current_fees === null)
+                                                    Free
+                                                @else
+                                                    Tk. {{ number_format($item->training->current_fees, 0) }}
+                                                @endif
+                                            </h5>
+
                                         </li>
                                     </ul>
                                 </div>

@@ -12,7 +12,13 @@
                             <div class="course-detail-bx rounded rounded-2">
                                 <div class="course-price">
                                     <del class="text-danger">Tk.{{$detail->regular_fees ?? ''}}</del>
-                                    <h6 class="price">Tk.{{$detail->current_fees ?? ''}}</h6>
+                                    <h4 class="prices">
+                                        @if($detail->current_fees == 0 || $detail->current_fees === null)
+                                            <span class="badge text-white bg-success">Free</span>
+                                        @else
+                                            <span class="text-primary">Tk. {{ number_format($detail->current_fees, 0) }}</span>
+                                        @endif
+                                    </h4>
                                 </div>
                                 <div class="course-buy-now text-center">
                                     <form action="{{ route('customer.booking.courses',$detail->id ) }}" method="POST" class="me-2">

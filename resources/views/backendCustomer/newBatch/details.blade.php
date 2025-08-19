@@ -12,7 +12,13 @@
                             <div class="course-detail-bx">
                                 <div class="course-price">
                                     <del class="text-danger"><b>Tk.{{$detail->training->regular_fees ?? 'n/a'}}</b></del>
-                                    <h6 class="price">Tk.{{$detail->training->current_fees ?? 'n/a'}}</h6>
+                                    <h4 class="prices">
+                                        @if($detail->current_fees == 0 || $detail->current_fees === null)
+                                            <span class="badge text-white bg-success">Free</span>
+                                        @else
+                                            <span class="text-primary">Tk. {{ number_format($detail->current_fees, 0) }}</span>
+                                        @endif
+                                    </h4>
                                 </div>
                                 <div class="course-buy-now text-center">
                                     <form action="{{ route('customer.batch.admission',$detail->id ) }}" method="POST" class="me-2">
