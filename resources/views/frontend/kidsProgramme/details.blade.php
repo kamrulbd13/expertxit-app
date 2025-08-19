@@ -257,7 +257,7 @@
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="mb-1 fw-bold">{{ $details->trainer->trainer_name ?? 'Friendly Teacher' }}</h6>
-                                    <p class="text-muted small mb-2">Kids Learning Specialist</p>
+                                    <p class="text-muted small mb-2">{{$details->trainerType->trainer_type ?? ''}}</p>
                                     <div class="d-flex">
                                         <a href="#" class="btn btn-sm btn-outline-primary me-2 rounded social-btn d-flex align-items-center justify-content-center">
                                             <i class="bi bi-envelope"></i>

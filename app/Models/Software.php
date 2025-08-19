@@ -53,22 +53,23 @@ class Software extends Model
 
 
 //    updateData
+// updateData
     public static function updateData($request, $id)
     {
         // Get the software
         self::$software = Software::findOrFail($id);
 
         // Update fields
-        self::$software->name                        = $request->name;
-        self::$software->software_category_id        = $request->software_category_id;
-        self::$software->description                 = $request->description;
-        self::$software->core_features               = $request->core_features;
-        self::$software->advanced_modules            = $request->advanced_modules;
-        self::$software->why_choose_our_solution     = $request->why_choose_our_solution;
+        self::$software->name                           = $request->name;
+        self::$software->software_category_id           = $request->software_category_id;
+        self::$software->description                    = $request->description;
+        self::$software->core_features                  = $request->core_features;
+        self::$software->advanced_modules               = $request->advanced_modules;
+        self::$software->why_choose_our_solution        = $request->why_choose_our_solution;
         self::$software->benefits_for_every_stakeholder = $request->benefits_for_every_stakeholder;
-        self::$software->get_started_today           = $request->get_started_today;
-        self::$software->status                       = $request->status;
-        self::$software->author_id                    = Auth::id();
+        self::$software->get_started_today              = $request->get_started_today;
+        self::$software->status                         = $request->status;
+        self::$software->author_id                      = Auth::id();
 
         // ✅ Handle image update
         if ($request->hasFile('image')) {
@@ -77,13 +78,8 @@ class Software extends Model
                 unlink(public_path(self::$software->image_path));
             }
 
-            // Store new image
-            $image = $request->file('image');
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/software'), $imageName);
-
-            // Save new image path
-            self::$software->image_path = 'uploads/software/' . $imageName;
+            // Use the same function for consistency
+            self::$software->image_path = self::getImageUrl($request);
         }
 
         // Save the software

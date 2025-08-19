@@ -152,7 +152,7 @@
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
                 aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars"></i> <!-- Font Awesome hamburger -->
         </button>
 
         <nav class="collapse navbar-collapse" id="mainNav" role="navigation" aria-label="Primary navigation">

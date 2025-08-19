@@ -14,14 +14,16 @@
                     <div class="col-md-12">
                         <div class="form-group mt-3">
                             <label for="software_category_id">Category</label>
-                            <select class="form-control" name="software_category_id" id="software_category_id">
-                                <option>Select ...</option>
+                            <select class="form-control" name="software_category_id" id="software_category_id" required>
+                                <option value="">Select ...</option>
                                 @foreach($softwareCategories as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                    <option value="{{ $item->id }}" {{ $item->id == $software->software_category_id ? 'selected' : '' }}>
+                                        {{ $item->name }}
+                                    </option>
                                 @endforeach
-
                             </select>
                         </div>
+
                     </div>
 
                 </div>

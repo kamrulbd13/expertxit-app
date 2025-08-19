@@ -3,7 +3,7 @@
 {{--    table --}}
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title text-center font-weight-bold text-base text-uppercase">All Training Information</h4>
+        <h4 class="card-title text-center font-weight-bold text-base text-uppercase">All Kids Programme Information</h4>
         <hr class="w-50 mx-auto">
         <div class="row">
             <div class="col-12">

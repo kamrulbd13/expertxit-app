@@ -17,7 +17,7 @@
                             <select class="form-control" name="itService_category_id" id="itService_category_id">
                                 <option>Select ...</option>
                                 @foreach($itServiceCategories as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                    <option value="{{$item->id}}" {{$item->id == $itService->itService_category_id ? 'selected' : ''}}>{{$item->name}}</option>
                                 @endforeach
 
                             </select>
