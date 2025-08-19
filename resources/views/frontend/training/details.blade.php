@@ -217,9 +217,10 @@
                                             @foreach($training->reviews as $review)
                                                 <div class="list-group-item">
                                                     <div class="d-flex justify-content-between align-items-center">
-                                                        <h6 class="mb-1">{{ $review->user->name }}</h6>
+                                                        <h6 class="mb-1">{{ $review->user?->name ?? 'Anonymous' }}</h6>
                                                         <small class="text-muted">{{ $review->created_at->diffForHumans() }}</small>
                                                     </div>
+
                                                     <div class="mb-2">
                                                         <!-- Stars -->
                                                         @for($i=1; $i<=5; $i++)
@@ -339,7 +340,7 @@
                             @foreach($training->reviews as $review)
                                 <div class="list-group-item mb-3 shadow-sm" style="border-radius: 5px; background-color: #f8f9fa;">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <h6 class="fw-bold mb-0">{{ $review->user->name }}</h6>
+                                        <h6 class="fw-bold mb-0">{{ $review->user->name ?? 'Anonymous' }}</h6>
                                         <p class="mb-0">{{ $review->review ?? 'N/A' }}</p>
                                         <small class="text-muted">{{ $review->created_at->format('d M Y') }}</small>
                                     </div>
