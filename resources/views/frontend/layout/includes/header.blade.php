@@ -125,7 +125,7 @@
 <div class="topbar" role="region" aria-label="Contact and social media info">
     <div class="container d-flex justify-content-between align-items-center flex-wrap">
         <div class="d-flex align-items-center flex-wrap">
-            <div><a href="#"><i class="fas fa-users me-2" aria-hidden="true"></i>Join Our Team</a></div>
+            <div><a href="https://chat.whatsapp.com/Bk1YllhplYMDnujwlshHGs?mode=ac_t"><i class="fas fa-users me-2" aria-hidden="true"></i>Join Our Team</a></div>
             <div class="vr"></div>
             <div><i class="fas fa-envelope me-2" aria-hidden="true"></i><a href="mailto:{{$systemInfo->mail1 ?? ''}}">{{$systemInfo->mail1 ?? ''}}</a></div>
         </div>
