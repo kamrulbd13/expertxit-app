@@ -7,69 +7,126 @@
         }
 
         html, body {
-            /*width: 100%;*/
-            /*height: 100%;*/
             margin: 0;
             padding: 20px;
-            background: #f5f5f5;
-            font-family: 'Georgia', serif;
+            background: #f5f5f5; /* subtle page background */
+            font-family: 'Georgia', serif; /* formal serif font */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+
+            /* Centering certificate vertically and horizontally */
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+
+            /* Ensure smooth printing */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
+        /* Optional: subtle page border to visually frame the certificate */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid #d1d5db; /* light gray border */
+            pointer-events: none; /* doesn't interfere with content */
+            z-index: 0;
+        }
         .print-actions {
             margin-bottom: 20px;
             z-index: 100;
         }
 
+
+        /* Optional: central faint emblem or icon */
         .certificate-container {
             background:
-                linear-gradient(135deg, rgba(242, 242, 247, 0.9) 0%, rgba(232, 232, 237, 0.9) 100%),
+                /* Soft gradient base */
+                linear-gradient(135deg, rgba(242, 242, 247, 0.95) 0%, rgba(232, 232, 237, 0.95) 100%),
+                    /* Decorative radial shapes for subtle elegance */
                 radial-gradient(circle at 20% 20%, rgba(44, 62, 80, 0.05) 0%, transparent 25%),
                 radial-gradient(circle at 80% 80%, rgba(44, 62, 80, 0.05) 0%, transparent 25%),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="%232c3e50"/></svg>');
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15), inset 0 0 50px rgba(44, 62, 80, 0.1);
+                    /* Subtle geometric SVG pattern */
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.02"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="%232c3e50"/></svg>');
+
+            box-shadow:
+                0 12px 36px rgba(0, 0, 0, 0.15),
+                inset 0 0 50px rgba(44, 62, 80, 0.1);
+
             overflow: hidden;
-            border: 15px solid #2c3e50;
+            border: 12px solid #0052b0; /* strong formal border */
             font-family: 'Georgia', serif;
-            color: #333;
+            color: #0f172a;
             width: 100%;
             height: 100%;
-            border-radius: 1px;
+            border-radius: 12px;
             position: relative;
-            padding: 10px 15px;
-            border: 12px solid #0b3b70; /* strong dark border */
+            padding: 40px 50px;
+
+            /* Subtle corner ornaments */
         }
 
-        /* Decorative corner elements */
         .certificate-container::before,
         .certificate-container::after {
-            content: "";
+            content: '';
             position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #0052b0;
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+
+        /* Top-left corner ornament */
+        .certificate-container::before {
+            top: 20px;
+            left: 20px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        /* Bottom-right corner ornament */
+        .certificate-container::after {
+            bottom: 20px;
+            right: 20px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        /* Subtle watermark/emblem in the center */
+        .certificate-emblem {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            color: rgba(0, 82, 176, 0.05);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Optional decorative flourish shapes on sides */
+        .certificate-flourish-left,
+        .certificate-flourish-right {
+            position: absolute;
+            top: 20%;
             width: 80px;
             height: 80px;
-            background: transparent;
-            border: 8px solid #2c3e50;
-            z-index: 1;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%230052b0" fill-opacity="0.05"/></svg>');
+            z-index: 0;
         }
 
-        .certificate-container::before {
-            top: -15px;
-            left: -15px;
-            border-right: none;
-            border-bottom: none;
-            border-radius: 8px 0 0 0;
+        .certificate-flourish-left {
+            left: 0;
         }
 
-        .certificate-container::after {
-            bottom: -15px;
-            right: -15px;
-            border-left: none;
-            border-top: none;
-            border-radius: 0 0 8px 0;
+        .certificate-flourish-right {
+            right: 0;
+            transform: scaleX(-1);
         }
 
         /* Ornamental flourishes */
@@ -81,18 +138,29 @@
             z-index: 0;
         }
 
+        /* Top-left luxurious flourish */
         .flourish.top-left {
             top: 20px;
             left: 20px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 Q75 25 50 50 Q25 75 50 100" stroke="%232c3e50" fill="none" stroke-width="2"/></svg>');
+            width: 140px;
+            height: 140px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M20,180 C50,50 150,50 180,180 M40,150 C60,80 140,80 160,150" stroke="%232c3e50" stroke-width="2" fill="none"/><circle cx="30" cy="30" r="4" fill="%232c3e50"/><circle cx="50" cy="50" r="3" fill="%232c3e50"/></svg>') no-repeat center center;
+            background-size: contain;
+            opacity: 0.07;
         }
 
+        /* Bottom-right luxurious flourish */
         .flourish.bottom-right {
             bottom: 20px;
             right: 20px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 Q75 25 50 50 Q25 75 50 100" stroke="%232c3e50" fill="none" stroke-width="2"/></svg>');
+            width: 140px;
+            height: 140px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M20,180 C50,50 150,50 180,180 M40,150 C60,80 140,80 160,150" stroke="%232c3e50" stroke-width="2" fill="none"/><circle cx="30" cy="30" r="4" fill="%232c3e50"/><circle cx="50" cy="50" r="3" fill="%232c3e50"/></svg>') no-repeat center center;
+            background-size: contain;
             transform: rotate(180deg);
+            opacity: 0.07;
         }
+
 
         /* Decorative seal position */
         .certificate-seal {
@@ -127,8 +195,8 @@
             left: 50%;
             transform: translateX(-50%);
             width: 60%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #2c3e50, transparent);
+            height: 10px;
+            background: linear-gradient(to right, transparent, #0066dc, transparent);
         }
 
         .border-decoration.bottom {
@@ -136,32 +204,14 @@
             left: 50%;
             transform: translateX(-50%);
             width: 60%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #2c3e50, transparent);
+            height: 10px;
+            background: linear-gradient(to right, transparent, #0066dc, transparent);
         }
 
         /* Ribbon effect on sides */
-        .ribbon {
-            position: absolute;
-            width: 30px;
-            height: 100%;
-            top: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                rgba(44, 62, 80, 0.1),
-                rgba(44, 62, 80, 0.1) 10px,
-                rgba(44, 62, 80, 0.05) 10px,
-                rgba(44, 62, 80, 0.05) 20px
-            );
-        }
 
-        .ribbon.left {
-            left: 0;
-        }
 
-        .ribbon.right {
-            right: 0;
-        }
+
 
         .certificate-border {
             /*border: 4px groove #607d8b;*/
@@ -221,7 +271,7 @@
             line-height: 1.6;
             max-width: 75%;
             margin: 0 auto 60px;
-            color: #2f3e4d;
+            color: #0052b0;
             position: relative;
             z-index: 2;
         }
@@ -244,7 +294,7 @@
             transform: translateX(-50%);
             width: 600px;
             height: 4px;
-            background: linear-gradient(to right, transparent, #2b2155, transparent);
+            background: linear-gradient(to right, transparent, #0052b0, transparent);
         }
 
         .highlight-course-name {
