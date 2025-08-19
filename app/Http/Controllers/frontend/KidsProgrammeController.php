@@ -9,9 +9,23 @@ use Illuminate\Http\Request;
 class KidsProgrammeController extends Controller
 {
     //details
+
     public function details($id)
     {
-        $details = KidsProgramming::find($id);
-        return view('frontend.kidsProgramme.details', compact('details'));
+        $training = KidsProgramming::find($id);
+        // Calculate average rating
+        $averageRating = $training->reviews->avg('rating') ?? 0;
+
+        // Count per star
+        $ratingCounts = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $ratingCounts[$i] = $training->reviews->where('rating', $i)->count();
+        }
+
+        return view('frontend.kidsProgramme.details', compact('training', 'averageRating', 'ratingCounts'), [
+            'details' => $training,
+        ]);
     }
+
+
 }

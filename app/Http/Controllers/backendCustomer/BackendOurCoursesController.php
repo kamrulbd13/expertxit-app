@@ -20,13 +20,25 @@ class BackendOurCoursesController extends Controller
 //details
     public function details($id)
     {
-        // Fetch the training with all its curriculum items
-        $training = Training::with('trainingCurriculam')->findOrFail($id);
+        $training = Training::with([
+            'trainingCurriculam',
+            'reviews.user' // eager load reviews with user
+        ])->findOrFail($id);
 
-        return view('backendCustomer.ourCourses.details', [
+        // Calculate average rating
+        $averageRating = $training->reviews->avg('rating') ?? 0;
+
+        // Count per star
+        $ratingCounts = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $ratingCounts[$i] = $training->reviews->where('rating', $i)->count();
+        }
+
+        return view('backendCustomer.ourCourses.details', compact('training', 'averageRating', 'ratingCounts'), [
             'detail' => $training,
         ]);
     }
+
 
 //    course search
     public function search(Request $request)

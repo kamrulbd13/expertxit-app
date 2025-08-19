@@ -220,7 +220,10 @@ class KidsProgramming extends Model
         return $this->hasMany(KidsProgramingCurriculum::class, 'kidsProgramme_id', 'id');
     }
 
-
+    public function reviews()
+    {
+        return $this->hasMany(KidsProgramReview::class, 'kidsProgramme_id');
+    }
     public function skillLevel()
     {
         return $this->belongsTo(SkillLevel::class);

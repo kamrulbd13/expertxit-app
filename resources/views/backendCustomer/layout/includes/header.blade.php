@@ -20,6 +20,7 @@
             <ul class="ttr-header-navigation email-menu-bar-inner flex-wrap">
                 <li><a href="{{route('our.home.index')}}" class="ttr-material-button">HOME</a></li>
                 <li><a href="{{route('our.courses.index')}}" class="ttr-material-button"><span class="badge badge-warning">All</span> COURSES</a></li>
+                <li><a href="{{route('our.kids.programme.index')}}" class="ttr-material-button"><span class="badge badge-warning">All</span> KIDS PROGRAMME</a></li>
                 <li><a href="{{route('new.batch.index')}}" class="ttr-material-button"><span class="badge badge-warning">New</span> BATCHES</a></li>
                 <li><a href="{{route('new.event.index')}}" class="ttr-material-button"><span class="badge badge-warning">New</span> EVENTS</a></li>
                 <li><a href="{{route('ebook.index')}}" class="ttr-material-button"><span class="badge badge-warning">Store</span> E-BOOK</a></li>
@@ -60,20 +61,6 @@
         <!-- Right Icons (desktop only) -->
         <div class="ttr-header-right ttr-with-seperator d-none d-md-block">
             <ul class="ttr-header-navigation d-flex align-items-center flex-wrap gap-1">
-                <li>
-                    <a href="#" class="ttr-material-button ttr-search-toggle">
-                        <span id="live-clock"></span>
-                        <script>
-                            function updateClock() {
-                                const now = new Date();
-                                const options = { day: '2-digit', month: 'short', year: 'numeric' };
-                                document.getElementById('live-clock').innerText = now.toLocaleDateString('en-US', options);
-                            }
-                            setInterval(updateClock, 60000);
-                            updateClock();
-                        </script>
-                    </a>
-                </li>
                 <li class="header-search-part">
                     <a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
                 </li>

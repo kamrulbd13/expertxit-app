@@ -21,10 +21,10 @@
                     </h1>
 
                     <div class="d-flex align-items-center mb-4">
-                        <div class="me-4">
+                        <div class="me-4 d-flex align-items-center">
                             <i class="bi bi-star-fill text-warning me-1"></i>
-                            <span class="fw-medium">4.9</span>
-                            <span class="text-muted ms-1">(120 reviews)</span>
+                            <span class="fw-medium">{{ number_format($averageRating, 1) }}</span>
+                            <span class="text-muted ms-1">({{ $training->reviews->count() }} reviews)</span>
                         </div>
                         <div>
                             <i class="bi bi-people-fill text-primary me-1"></i>
@@ -207,15 +207,37 @@
                                 </div>
                                 <!-- Reviews Tab -->
                                 <div class="tab-pane fade" id="reviews" role="tabpanel">
-                                    <div class="text-center py-4">
-                                        <i class="bi bi-star-fill display-4 text-warning mb-3"></i>
-                                        <h4 class="fw-bold mb-2">No Reviews Yet</h4>
-                                        <p class="text-muted mb-3">Be the first to review this training</p>
-                                        <button class="btn btn-outline-primary">
-                                            <i class="bi bi-pencil-square me-2"></i>Write a Review
-                                        </button>
-                                    </div>
+
+                                @if($training->reviews->count() > 0)
+                                    <!-- Show all reviews -->
+                                        <div class="list-group list-group-flush">
+                                            @foreach($training->reviews as $review)
+                                                <div class="list-group-item">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h6 class="mb-1">{{ $review->user->name }}</h6>
+                                                        <small class="text-muted">{{ $review->created_at->diffForHumans() }}</small>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <!-- Stars -->
+                                                        @for($i=1; $i<=5; $i++)
+                                                            <i class="bi {{ $i <= $review->rating ? 'bi-star-fill text-warning' : 'bi-star text-muted' }}"></i>
+                                                        @endfor
+                                                    </div>
+                                                    <p class="mb-0">{{ $review->comment }}</p>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                @else
+                                    <!-- If no reviews -->
+                                        <div class="text-center py-4">
+                                            <i class="bi bi-star-fill display-4 text-warning mb-3"></i>
+                                            <h4 class="fw-bold mb-2">No Reviews Yet</h4>
+                                            <p class="text-muted mb-3">Be the first to review this training</p>
+                                        </div>
+                                    @endif
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -301,20 +323,43 @@
             </div>
 
             <!-- Reviews Section -->
-            <div class="mt-5 pt-4 reviews-section">
+            <div class="mt-5 pt-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h4 class="fw-bold mb-0">What Parents Say</h4>
-                    <button class="btn btn-primary review-btn">
-                        <i class="bi bi-pencil-square me-2"></i>Write a Review
-                    </button>
+                    <h4 class="fw-bold mb-0" style="color: #2c3e50;">What Parents Say</h4>
                 </div>
+            @if($training->reviews->count() > 0)
+                <!-- Loop through all reviews -->
+                    <div class="list-group">
+                        @foreach($training->reviews as $review)
+                            <div class="list-group-item mb-3 shadow-sm" style="border-radius: 5px; background-color: #f8f9fa;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="fw-bold mb-0">{{ $review->user->name }}</h6>
+                                    <p class="mb-0">{{ $review->review ?? 'N/A' }}</p>
+                                    <small class="text-muted">{{ $review->created_at->format('d M Y') }}</small>
+                                </div>
 
-                <div class="text-center py-5 no-reviews">
-                    <i class="bi bi-chat-square-quote display-4 mb-3"></i>
-                    <h5 class="fw-bold mb-2">No Reviews Yet</h5>
-                    <p class="text-muted mb-4">Be the first to share your experience!</p>
-                </div>
+                                <!-- Star Rating -->
+                                <div class="mb-2">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <i class="bi {{ $i <= $review->rating ? 'bi-star-fill text-warning' : 'bi-star text-muted' }}"></i>
+                                    @endfor
+                                </div>
+
+                                <!-- Review Comment -->
+                                <p class="mb-0">{{ $review->comment }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+            @else
+                <!-- No reviews yet -->
+                    <div class="text-center py-5" style="background-color: #f8f9fa; border-radius: 12px;">
+                        <i class="bi bi-chat-square-quote display-4 mb-3" style="color: #0052b0;"></i>
+                        <h5 class="fw-bold mb-2" style="color: #2c3e50;">No Reviews Yet</h5>
+                        <p class="text-muted mb-4">Be the first to share your experience!</p>
+                    </div>
+                @endif
             </div>
+
         </div>
     </section>
 

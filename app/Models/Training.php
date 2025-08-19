@@ -251,5 +251,10 @@ class Training extends Model
         return $this->hasMany(LabAccessCredential::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(TrainingProgramReview::class, 'training_id');
+    }
+
 
 }

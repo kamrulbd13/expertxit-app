@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="ttr-post-info">
                                     <div class="ttr-post-title ">
-                                        <h2 class="post-title">{{$detail->training_name ?? ''}}</h2>
+                                        <h2 class="post-title">{{$detail->kidsProgramme_name ?? ''}}</h2>
                                     </div>
                                 </div>
                             </div>
@@ -100,9 +100,9 @@
                             </div>
                             <div class="m-b30" id="curriculum">
                                 <h4>Curriculum</h4>
-                                @if($detail->trainingCurriculam->isNotEmpty())
+                                @if($detail->kidsProgrammeCurriculum->isNotEmpty())
                                     <div id="trainingCurriculumAccordion">
-                                        @foreach($detail->trainingCurriculam as $index => $item)
+                                        @foreach($detail->kidsProgrammeCurriculum as $index => $item)
                                             <div class="card mb-1 rounded rounded-2">
                                                 <div class="card-header m-0" id="heading{{ $index }}" style="padding: 2px;">
                                                     <h5 class="mb-0">
@@ -141,24 +141,24 @@
 
                                 <div class="review-bx rounded rounded-2">
                                     <div class="all-review rounded rounded-2">
-                                        <h2 class="rating-type">{{ number_format($training->reviews->avg('rating'),1) }}</h2>
+                                        <h2 class="rating-type">{{ number_format($kidsProgramme->reviews->avg('rating'),1) }}</h2>
                                         <ul class="cours-star">
                                             @for($i=1; $i<=5; $i++)
-                                                <li class="{{ $i <= round($training->reviews->avg('rating')) ? 'active' : '' }}">
+                                                <li class="{{ $i <= round($kidsProgramme->reviews->avg('rating')) ? 'active' : '' }}">
                                                     <i class="fa fa-star"></i>
                                                 </li>
                                             @endfor
                                         </ul>
-                                        <span>{{ $training->reviews->count() }} Ratings</span>
+                                        <span>{{ $kidsProgramme->reviews->count() }} Ratings</span>
                                     </div>
 
                                     {{-- Star distribution --}}
                                     <div class="review-bar">
                                         @for($i=5; $i>=1; $i--)
                                             @php
-                                                $count = $training->reviews->where('rating',$i)->count();
-                                                $percent = $training->reviews->count() > 0
-                                                    ? ($count / $training->reviews->count()) * 100
+                                                $count = $kidsProgramme->reviews->where('rating',$i)->count();
+                                                $percent = $kidsProgramme->reviews->count() > 0
+                                                    ? ($count / $kidsProgramme->reviews->count()) * 100
                                                     : 0;
                                             @endphp
                                             <div class="bar-bx">
@@ -176,11 +176,13 @@
 
                                 {{-- Write a Review Button --}}
 
-                                <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#reviewModal">
-                                    Write a Review
-                                </button>
+                                    <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#reviewModal">
+                                        Write a Review
+                                    </button>
+
 
                             </div>
+
 
 
                         </div>
@@ -205,7 +207,7 @@
                 "progressBar" :true,
                 "closeButton" : true,
             }
-            toastr["success"]("Thanks for Booking Course","Done");
+            toastr["success"]("Thanks for Booking The Course","Done");
         </script>
     @endif
 
@@ -214,7 +216,7 @@
     <!-- Review Modal -->
     <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('training.review.store',$training->id) }}" method="POST" class="modal-content">
+            <form action="{{ route('kids.programme.review.store',$kidsProgramme->id) }}" method="POST" class="modal-content">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Write a Review</h5>

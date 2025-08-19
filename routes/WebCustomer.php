@@ -19,6 +19,9 @@ use App\Http\Controllers\backendCustomer\CustomerChatController;
 use App\Http\Controllers\backendCustomer\BackendCustomerEbookController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backendCustomer\CustomerAdmissionController;
+use App\Http\Controllers\backend\TrainingProgramReviewController;
+use App\Http\Controllers\backend\KidsProgramReviewController;
+use App\Http\Controllers\backendCustomer\BackendCustomerKidsProgrammeController;
 
 
 
@@ -55,12 +58,25 @@ Route::get('/ajax-email-check', [BackendCustomerController::class, 'ajaxEmailChe
 //for chat message
 Route::middleware(['auth:customer'])->group(function () {
     Route::get('/customer/chat', function () {
-        return view('customer.chat');
-    });
+        return view('customer.chat');});
+
+    Route::post('/trainings/{id}/review', [TrainingProgramReviewController::class, 'store'])->name('training.review.store');
+    Route::get('/user/reviews/{id}/edit', [TrainingProgramReviewController::class, 'edit'])->name('user.reviews.edit');
+    Route::put('/user/reviews/{id}', [TrainingProgramReviewController::class, 'update'])->name('user.reviews.update');
+    Route::delete('/user/reviews/{id}', [TrainingProgramReviewController::class, 'destroy'])->name('user.reviews.destroy');
+
+    Route::post('/kidsProgramme/{id}/review', [KidsProgramReviewController::class, 'store'])->name('kids.programme.review.store');
+    Route::get('/user/reviews/{id}/edit', [KidsProgramReviewController::class, 'edit'])->name('kids.programme.user.reviews.edit');
+    Route::put('/user/reviews/{id}', [KidsProgramReviewController::class, 'update'])->name('kids.programme.user.reviews.update');
+    Route::delete('/user/reviews/{id}', [KidsProgramReviewController::class, 'destroy'])->name('kids.programme.user.reviews.destroy');
+
 
     Route::get('/customer/chat/messages', [CustomerChatController::class, 'fetchMessages']);
     Route::post('/customer/chat/send', [CustomerChatController::class, 'sendMessage']);
 });
+
+Route::get('/trainings/{id}/reviews', [TrainingProgramReviewController::class, 'showReviews'])->name('training.reviews.show');
+Route::get('/kidsProgramme/{id}/reviews', [KidsProgramReviewController::class, 'showReviews'])->name('kids.programme.reviews.show');
 
 
 
@@ -78,6 +94,11 @@ Route::middleware(['auth.customer', 'update.lastseen'])->group(function () {
     Route::get('/our/courses', [BackendOurCoursesController::class, 'index'])->name('our.courses.index');
     Route::get('/our/courses/details/{id}', [BackendOurCoursesController::class, 'details'])->name('our.courses.details');
     Route::get('/customer/courses/search', [BackendOurCoursesController::class, 'search'])->name('customer.courses.search');
+
+    // Our Kids programme (protected)
+    Route::get('/our/kids/programme', [BackendCustomerKidsProgrammeController::class, 'index'])->name('our.kids.programme.index');
+    Route::get('/our/kids/programme/details/{id}', [BackendCustomerKidsProgrammeController::class, 'details'])->name('our.kids.programme.details');
+    Route::get('/customer/kids/programme/search', [BackendCustomerKidsProgrammeController::class, 'search'])->name('customer.kids.programme.search');
 
 
     // new batch

@@ -56,16 +56,16 @@
                                             <h5>Categories</h5>
                                             <h4>{{$item->trainingCategory->training_category ?? ''}}</h4>
                                         </li>
-{{--                                        <li class="card-courses-review">--}}
-{{--                                            <h5>3 Review</h5>--}}
-{{--                                            <ul class="cours-star">--}}
-{{--                                                <li class="active"><i class="fa fa-star"></i></li>--}}
-{{--                                                <li class="active"><i class="fa fa-star"></i></li>--}}
-{{--                                                <li class="active"><i class="fa fa-star"></i></li>--}}
-{{--                                                <li><i class="fa fa-star"></i></li>--}}
-{{--                                                <li><i class="fa fa-star"></i></li>--}}
-{{--                                            </ul>--}}
-{{--                                        </li>--}}
+                                        <li class="card-courses-review">
+                                            <h5>3 Review</h5>
+                                            <ul class="cours-star">
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </li>
                                         <li class="card-courses-stats">
                                         <span class="badge rounded-pill {{ $paymentStatus == 0 ? 'bg-warning text-dark' : 'bg-success text-white' }}
                                             p-2 px-2 d-flex align-items-center">

@@ -9,11 +9,28 @@ use Illuminate\Http\Request;
 class TrainingController extends Controller
 {
     //details
+
     public function details($id)
     {
-            $details = Training::find($id);
-            return view('frontend.training.details', compact('details'));
+        $training = Training::with([
+            'trainingCurriculam',
+            'reviews.user' // eager load reviews with user
+        ])->findOrFail($id);
+
+        // Calculate average rating
+        $averageRating = $training->reviews->avg('rating') ?? 0;
+
+        // Count per star
+        $ratingCounts = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $ratingCounts[$i] = $training->reviews->where('rating', $i)->count();
+        }
+
+        return view('frontend.training.details', compact('training', 'averageRating', 'ratingCounts'), [
+            'details' => $training,
+        ]);
     }
+
 
 //jobGuaranteeCourse
     public function jobGuaranteeCourse()
