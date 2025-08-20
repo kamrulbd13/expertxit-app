@@ -243,12 +243,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="kidsDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-child me-1"></i> Kids Programming
+                        <i class="fas fa-child me-1"></i> Kids Computer
                     </a>
                     <div class="dropdown-menu mega-menu mt-0" aria-labelledby="kidsDropdown">
                         <div class="row g-4">
                             @foreach($kidsProgrammeCategories as $category)
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <h6><i class="fas fa-robot"></i> {{ $category->name ?? '' }}</h6>
                                     <ul>
                                         @foreach($category->kidsProgrammes as $item)
