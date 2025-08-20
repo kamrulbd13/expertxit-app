@@ -12,6 +12,7 @@ Route::get('/contact',[HomeController::class, 'contact'])->name('contact.index')
 Route::get('/ebook/store',[HomeController::class, 'ebook'])->name('ebook.store.index');
 Route::get('/ebook/details/{id}', [HomeController::class, 'details'])->name('ebook.show.details');
 Route::get('/training/details/{id}',[TrainingController::class, 'details'])->name('details');
+Route::get('/training/{id}/download', [TrainingController::class, 'download'])->name('training.download');
 Route::get('/kids-programme/details/{id}',[KidsProgrammeController::class, 'details'])->name('kids.programme.details');
 Route::get('/software/details/{id}',[SoftwareControlller::class, 'details'])->name('software.details');
 Route::get('/it-service/details/{id}',[ItServiceControlller::class, 'details'])->name('itService.details');

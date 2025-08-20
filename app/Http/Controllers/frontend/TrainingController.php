@@ -5,6 +5,8 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Training;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class TrainingController extends Controller
 {
@@ -32,11 +34,26 @@ class TrainingController extends Controller
     }
 
 
+    public function download($id)
+    {
+        $training = Training::with(['trainer','language','skillLevel','trainingCurriculam'])->findOrFail($id);
+
+
+
+        $pdf = Pdf::loadView('frontend.training.pdf', compact('training'))
+            ->setPaper('a4');
+
+        return $pdf->download('training-details-'.$training->id.'.pdf');
+    }
+
+
+
 //jobGuaranteeCourse
     public function jobGuaranteeCourse()
     {
         return view('frontend.job_guarantee_course.index');
     }
+
 
 
 

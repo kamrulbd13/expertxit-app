@@ -162,6 +162,16 @@
                                         <i class="bi bi-star-fill me-2"></i>Reviews
                                     </button>
                                 </li>
+
+                                <!-- ✅ New Download Tab -->
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link fw-bold" id="download-tab" data-bs-toggle="tab"
+                                            data-bs-target="#download" type="button"
+                                            style="color: #5a5c69;">
+                                        <i class="bi bi-download me-2"></i>Download
+                                    </button>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content">
@@ -240,6 +250,18 @@
                                         </div>
                                     @endif
 
+                                </div>
+
+
+                                <!-- ✅ Download Tab -->
+                                <div class="tab-pane fade" id="download" role="tabpanel">
+                                    <h4 class="fw-bold mb-3" style="color: #2c3e50;">Download Full Course Details</h4>
+                                    <p class="text-muted">Get a complete PDF copy of this course with company information and watermark.</p>
+                                    <a href="{{ route('training.download', $details->id) }}"
+                                       class="btn btn-primary fw-bold d-flex align-items-center"
+                                       style="border-radius: 8px; width: fit-content;">
+                                        <i class="bi bi-file-earmark-pdf me-2"></i> Download PDF
+                                    </a>
                                 </div>
 
                             </div>
