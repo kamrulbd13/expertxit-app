@@ -252,6 +252,20 @@
                 </ul>
             </div>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#userManagement" aria-expanded="false" aria-controls="form-elements">
+                <i class="fab fa-wpforms menu-icon"></i>
+                <span class="menu-title">User Management</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="userManagement">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="{{route('roles.index')}}">User Role</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('permissions.index')}}">Permission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('user-roles.index')}}">User Permission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('permission-role.index')}}">Role Permission</a></li>
+                </ul>
+            </div>
+        </li>
     </ul>
   </nav>

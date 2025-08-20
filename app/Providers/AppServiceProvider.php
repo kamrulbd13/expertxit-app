@@ -13,6 +13,7 @@ use App\Models\Training;
 use App\Models\TrainingCategory;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +38,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+//    user permission
+        Blade::if('role', function ($role) {
+            return \Illuminate\Support\Facades\Auth::check() && Auth::user()->hasRole($role);
+        });
+
+        Blade::if('permission', function ($permission) {
+            return Auth::check() && Auth::user()->hasPermission($permission);
+        });
+
 
         Schema::defaultStringLength(191);
         //bootstrap link

@@ -16,6 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
         'auth.admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
         'auth.customer' => \App\Http\Middleware\RedirectIfNotCustomer::class,
         'update.lastseen' => \App\Http\Middleware\UpdateLastSeen::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
+        'permission' => \App\Http\Middleware\PermissionMiddleware::class,
     ]);
 })
     ->withExceptions(function (Exceptions $exceptions) {

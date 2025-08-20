@@ -37,6 +37,10 @@ use App\Http\Controllers\backend\ITServiceCategoryController;
 use App\Http\Controllers\backend\ITServiceController;
 use App\Http\Controllers\backend\KidsProgrammeCategoryController;
 use App\Http\Controllers\backend\KidsProgrammeController;
+use App\Http\Controllers\backend\RoleController;
+use App\Http\Controllers\backend\PermissionController;
+use App\Http\Controllers\backend\RoleUserController;
+use App\Http\Controllers\backend\PermissionRoleController;
 
 
 
@@ -355,6 +359,11 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('/delete/{id}', 'delete')->name('delete');
     });
 
+//    user permission
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('user-roles', RoleUserController::class);
+    Route::resource('permission-role', PermissionRoleController::class);
 
     Route::prefix('admin/visitor')->group(function () {
         Route::get('/', [VisitorController::class, 'index'])->name('visitor.index');
