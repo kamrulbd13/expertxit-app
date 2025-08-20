@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\KidsProgramming;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class KidsProgrammeController extends Controller
@@ -26,6 +27,20 @@ class KidsProgrammeController extends Controller
             'details' => $training,
         ]);
     }
+
+
+    public function download($id)
+    {
+        $training = KidsProgramming::with(['trainer','language','skillLevel','kidsProgrammeCurriculum'])->findOrFail($id);
+
+
+
+        $pdf = Pdf::loadView('frontend.kidsProgramme.pdf', compact('training'))
+            ->setPaper('a4');
+
+        return $pdf->download('Kids-Programme-details-'.$training->id.'.pdf');
+    }
+
 
 
 }

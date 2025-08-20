@@ -14,6 +14,7 @@ Route::get('/ebook/details/{id}', [HomeController::class, 'details'])->name('ebo
 Route::get('/training/details/{id}',[TrainingController::class, 'details'])->name('details');
 Route::get('/training/{id}/download', [TrainingController::class, 'download'])->name('training.download');
 Route::get('/kids-programme/details/{id}',[KidsProgrammeController::class, 'details'])->name('kids.programme.details');
+Route::get('/kids-programme/{id}/download', [KidsProgrammeController::class, 'download'])->name('kids.programme.download');
 Route::get('/software/details/{id}',[SoftwareControlller::class, 'details'])->name('software.details');
 Route::get('/it-service/details/{id}',[ItServiceControlller::class, 'details'])->name('itService.details');
 Route::get('/job/guarantee/course/',[TrainingController::class, 'jobGuaranteeCourse'])->name('job.guarantee.course');

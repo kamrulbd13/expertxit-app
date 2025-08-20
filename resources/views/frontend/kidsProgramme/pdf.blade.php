@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <title>{{ $training->kidsProgramme_name }}</title>
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>{{ $training->training_name }}</title>
     <style>
         body {
             font-family: 'DejaVu Sans', Arial, sans-serif;
@@ -165,19 +165,19 @@
     <!-- Training Title -->
     <div style="text-align:center; margin-bottom: 30px;">
         <h2 style="margin:0; font-size:22px; color:#333; font-weight:600;">
-            {{ $training->training_name }}
+            {{ $training->kidsProgramme_name }}
         </h2>
     </div>
 
     <!-- ABOUT TRAINING -->
     <div class="section">
-        <h2><i class="fa fa-info-circle"></i> About This Training</h2>
+        <h2><i class="fas fa-info-circle"></i> About This Training</h2>
         {!! $training->trainingDetails !!}
     </div>
 
     <!-- CURRICULUM -->
     <div class="section">
-        <h2><i class="fa fa-list-alt"></i> Curriculum</h2>
+        <h2><i class="fas fa-list-alt"></i> Curriculum</h2>
         <table class="curriculum-table">
             <thead>
             <tr>
@@ -187,7 +187,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($training->trainingCurriculam as $item)
+            @foreach($training->kidsProgrammeCurriculum as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td><strong>{{ $item->title }}</strong></td>
