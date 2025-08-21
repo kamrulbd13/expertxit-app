@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -78,6 +79,11 @@ class User extends Authenticatable
         return $this->roles()->whereHas('permissions', function($q) use ($permission) {
             $q->where('name', $permission);
         })->exists();
+    }
+// app/Models/User.php
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
 

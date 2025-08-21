@@ -8,16 +8,16 @@
             <p class="card-description">
               " Edit Information "
             </p>
-            <form action="{{route('permissions.update', $role->id)}}" method="POST" class="forms">
+            <form action="{{route('permissions.update', $permission->id)}}" method="POST" class="forms">
                 @csrf
                 @method('PUT')
                 <div class="form-group mb-2">
                     <label for="name" class="col-form-label">Permission Name</label>
-                    <input type="text" name="name" value="{{$role->name}}" class="form-control form-control-sm" required/>
+                    <input type="text" name="name" value="{{$permission->name}}" class="form-control form-control-sm" required/>
                 </div>
                 <div class="form-group mb-2">
                     <label for="description" class="col-form-label">Description</label>
-                    <input type="text" name="description" value="{{$role->description}}" class="form-control form-control-sm" placeholder="fas fa-globe" />
+                    <input type="text" name="description" value="{{$permission->description}}" class="form-control form-control-sm" placeholder="fas fa-globe" />
                     @error('description')
                     <span class="text-danger mt-1">Please entry the  icon class</span>
                     @enderror
@@ -28,7 +28,7 @@
                         <div class="col-sm-4">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="membershipRadios1" value="1" {{$role->status == 1 ? 'checked' : ''}}>
+                                    <input type="radio" class="form-check-input" name="status" id="membershipRadios1" value="1" {{$permission->status == 1 ? 'checked' : ''}}>
                                     Yes
                                 </label>
                             </div>
@@ -36,7 +36,7 @@
                         <div class="col-sm-5">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="membershipRadios2" value="0" {{$role->status === 0 ? 'checked' : ''}}>
+                                    <input type="radio" class="form-check-input" name="status" id="membershipRadios2" value="0" {{$permission->status === 0 ? 'checked' : ''}}>
                                     No
                                 </label>
                             </div>

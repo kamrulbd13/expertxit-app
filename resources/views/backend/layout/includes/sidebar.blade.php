@@ -1,28 +1,37 @@
+@php
+    $roleName = Auth::user()->role?->name ?? 'No Role Assigned';
+@endphp
+
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-      <li class="nav-item nav-profile">
-        <div class="nav-link">
-          <div class="profile-image">
-            <img src="{{asset('/')}}backend/images/faces/avater.jpg" alt="image"/>
-          </div>
-          <div class="profile-name">
-            <p class="name">
-              Welcome !
-            </p>
-              <stong class="text-primary font-weight-bold">{{ Auth::user()->name }}</stong>
-            <p class="designation">
-              Admin
-            </p>
-          </div>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('dashboard')}}">
-          <i class="fa fa-home menu-icon"></i>
-          <span class="menu-title">Dashboard</span>
-        </a>
-      </li>
+        {{-- editor, default & Admin can see Trainings --}}
+        @if(in_array($roleName, ['admin', 'editor', 'default']))
+            <li class="nav-item nav-profile">
+                <div class="nav-link">
+                    <div class="profile-image">
+                        <img src="{{ asset('backend/images/faces/avater.jpg') }}" alt="image"/>
+                    </div>
+                    <div class="profile-name">
+                        <p class="name">Welcome !</p>
+                        <strong class="text-primary font-weight-bold">{{ Auth::user()->name }}</strong>
+                        <p class="designation">{{ $roleName ?? 'No Role' }}</p>
+                    </div>
+                </div>
+            </li>
+
+        @endif
+
+        {{-- Only ADMIN can see these --}}
+        @if(Auth::user()->role?->name === 'admin')
+            {{-- Dashboard (Everyone can see) --}}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dashboard') }}">
+                    <i class="fa fa-home menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+{{--visitor query--}}
         <li class="nav-item d-none d-lg-block">
             <a class="nav-link" data-toggle="collapse" href="#visitorQuery" aria-expanded="false" aria-controls="sidebar-layouts">
                 <i class="fas fa-columns menu-icon"></i>
@@ -35,6 +44,7 @@
                 </ul>
             </div>
         </li>
+{{--        admission--}}
         <li class="nav-item d-none d-lg-block">
             <a class="nav-link" data-toggle="collapse" href="#admission" aria-expanded="false" aria-controls="sidebar-layouts">
                 <i class="fas fa-columns menu-icon"></i>
@@ -47,6 +57,7 @@
                 </ul>
             </div>
         </li>
+{{--        trainer--}}
       <li class="nav-item d-none d-lg-block">
         <a class="nav-link" data-toggle="collapse" href="#Trainers" aria-expanded="false" aria-controls="sidebar-layouts">
           <i class="fas fa-columns menu-icon"></i>
@@ -56,9 +67,11 @@
         <div class="collapse" id="Trainers">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{route('trainer.index')}}">All Trainer</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('trainer.type.index')}}">Trainer Type</a></li>
           </ul>
         </div>
       </li>
+{{--        software--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#Software" aria-expanded="false" aria-controls="ui-basic">
                 <i class="far fa-compass menu-icon"></i>
@@ -72,6 +85,7 @@
                 </ul>
             </div>
         </li>
+{{--        it service--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#itServices" aria-expanded="false" aria-controls="ui-basic">
                 <i class="far fa-compass menu-icon"></i>
@@ -85,6 +99,7 @@
                 </ul>
             </div>
         </li>
+{{--        training --}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#Trainings" aria-expanded="false" aria-controls="ui-basic">
                 <i class="far fa-compass menu-icon"></i>
@@ -95,13 +110,16 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('training.index')}}">All Training</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('training.category.index')}}">Category</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('language.index')}}">Language</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('skill.level.index')}}">Skill Level</a></li>
                 </ul>
             </div>
         </li>
+{{--        kids comuter--}}
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#kidsProgramming" aria-expanded="false" aria-controls="ui-basic">
           <i class="far fa-compass menu-icon"></i>
-          <span class="menu-title">Kids Programming</span>
+          <span class="menu-title">Kids Computer</span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="kidsProgramming">
@@ -111,6 +129,7 @@
           </ul>
           </div>
       </li>
+{{--        ebook--}}
         <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ebook" aria-expanded="false" aria-controls="ui-basic">
           <i class="far fa-compass menu-icon"></i>
@@ -123,6 +142,7 @@
           </ul>
           </div>
       </li>
+{{--        study materials--}}
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#studyMaterials" aria-expanded="false" aria-controls="ui-basic">
           <i class="far fa-compass menu-icon"></i>
@@ -138,6 +158,7 @@
           </ul>
           </div>
       </li>
+{{--        new batch--}}
         <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#upcoming" aria-expanded="false" aria-controls="ui-basic">
           <i class="far fa-compass menu-icon"></i>
@@ -150,6 +171,7 @@
             </ul>
           </div>
       </li>
+{{--        Trainee--}}
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#Childes" aria-expanded="false" aria-controls="ui-advanced">
           <i class="fas fa-clipboard-list menu-icon"></i>
@@ -162,6 +184,7 @@
           </ul>
         </div>
       </li>
+{{--        course booking--}}
         <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#traineeCourseBooking" aria-expanded="false" aria-controls="ui-advanced">
           <i class="fas fa-clipboard-list menu-icon"></i>
@@ -174,6 +197,7 @@
           </ul>
         </div>
       </li>
+{{--        course payment--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#traineeCoursePayment" aria-expanded="false" aria-controls="ui-advanced">
                 <i class="fas fa-clipboard-list menu-icon"></i>
@@ -186,6 +210,7 @@
                 </ul>
             </div>
         </li>
+{{--        course certificate--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#traineeCourseCertificate" aria-expanded="false" aria-controls="ui-advanced">
                 <i class="fas fa-clipboard-list menu-icon"></i>
@@ -198,6 +223,7 @@
                 </ul>
             </div>
         </li>
+{{--        event calendar--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#EventCalendar" aria-expanded="false" aria-controls="form-elements">
                 <i class="fab fa-wpforms menu-icon"></i>
@@ -212,20 +238,7 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="form-elements">
-                <i class="fab fa-wpforms menu-icon"></i>
-                <span class="menu-title">Training Setting</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="setting">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{route('trainer.type.index')}}">Trainer Type</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('language.index')}}">Language</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('skill.level.index')}}">Skill Level</a></li>
-                </ul>
-            </div>
-        </li>
+{{--            Communication--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#communication" aria-expanded="false" aria-controls="form-elements">
                 <i class="fab fa-wpforms menu-icon"></i>
@@ -238,6 +251,7 @@
                 </ul>
             </div>
         </li>
+{{--        system setting --}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#systemSetting" aria-expanded="false" aria-controls="form-elements">
                 <i class="fab fa-wpforms menu-icon"></i>
@@ -252,6 +266,7 @@
                 </ul>
             </div>
         </li>
+{{--        user management --}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#userManagement" aria-expanded="false" aria-controls="form-elements">
                 <i class="fab fa-wpforms menu-icon"></i>
@@ -260,12 +275,82 @@
             </a>
             <div class="collapse" id="userManagement">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="{{route('roles.index')}}">User Role</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('roles.index')}}">Role</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('permissions.index')}}">Permission</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('user-roles.index')}}">User Permission</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('permission-role.index')}}">Role Permission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('user-roles.index')}}">Manage Permission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('permission-role.index')}}">Manage Roles</a></li>
                 </ul>
             </div>
         </li>
+        @endif
+
+        {{-- Only editor can see these --}}
+        @if(Auth::user()->role?->name === 'editor')
+            {{-- Dashboard (Everyone can see) --}}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dashboard') }}">
+                    <i class="fa fa-home menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+            {{--        software--}}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#Software" aria-expanded="false" aria-controls="ui-basic">
+                    <i class="far fa-compass menu-icon"></i>
+                    <span class="menu-title">Software</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="Software">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{route('software.index')}}">All Software</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('software.category.index')}}">Category</a></li>
+                    </ul>
+                </div>
+            </li>
+            {{--        it service--}}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#itServices" aria-expanded="false" aria-controls="ui-basic">
+                    <i class="far fa-compass menu-icon"></i>
+                    <span class="menu-title">IT Services</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="itServices">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{route('itService.index')}}">All IT Service</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('itService.category.index')}}">Category</a></li>
+                    </ul>
+                </div>
+            </li>
+            {{--        training --}}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#Trainings" aria-expanded="false" aria-controls="ui-basic">
+                    <i class="far fa-compass menu-icon"></i>
+                    <span class="menu-title">Trainings</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="Trainings">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{route('training.index')}}">All Training</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('training.category.index')}}">Category</a></li>
+                    </ul>
+                </div>
+            </li>
+            {{--        kids comuter--}}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#kidsProgramming" aria-expanded="false" aria-controls="ui-basic">
+                    <i class="far fa-compass menu-icon"></i>
+                    <span class="menu-title">Kids Computer</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="kidsProgramming">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{route('kidsProgramme.index')}}">All Kids Programmes</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('kidsProgramme.category.index')}}">Category</a></li>
+                    </ul>
+                </div>
+            </li>
+        @endif
+
+
     </ul>
   </nav>

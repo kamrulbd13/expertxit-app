@@ -25,7 +25,7 @@
                                 Total Trainer
                             </p>
                             <h2>{{$totalTrainer}}</h2>
-                            <a href="{{route('trainer.index')}}" class="nav-link text-warning badge badge-outline-warning badge-pill">Details</a>
+                            <a href="" class="nav-link text-warning badge badge-outline-warning badge-pill">Details</a>
                         </div>
                         <div class="statistics-item">
                             <p>
@@ -33,7 +33,7 @@
                                 Total Training
                             </p>
                             <h2>{{$totalTraining}}</h2>
-                            <a href="{{route('training.index')}}" class="nav-link text-info badge badge-outline-info badge-pill">Details</a>
+                            <a href="" class="nav-link text-info badge badge-outline-info badge-pill">Details</a>
                         </div>
                         <div class="statistics-item">
                             <p>
@@ -41,7 +41,7 @@
                                 Total Trainee
                             </p>
                             <h2>{{$totalChild}}</h2>
-                            <a href="{{route('trainee.index')}}" class="nav-link text-danger badge badge-outline-danger badge-pill">Details</a>
+                            <a href="" class="nav-link text-danger badge badge-outline-danger badge-pill">Details</a>
                         </div>
                         <div class="statistics-item">
                             <p>
@@ -49,7 +49,7 @@
                                 Total Batch
                             </p>
                             <h2>{{$totalAcademicSession}}</h2>
-                            <a href="{{route('academic.session.index')}}" class="nav-link text-light badge badge-outline-light badge-pill">Details</a>
+                            <a href="" class="nav-link text-light badge badge-outline-light badge-pill">Details</a>
                         </div>
                         <div class="statistics-item">
                             <p>

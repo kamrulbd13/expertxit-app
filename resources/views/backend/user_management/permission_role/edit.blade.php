@@ -4,16 +4,12 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('permission-role.store') }}" method="POST">
+            <form action="{{ route('permission-role.update',$role->id) }}" method="POST">
                 @csrf
+@method('PUT')
                 <div class="mb-3">
-                    <label>Role</label>
-                    <select name="role_id" class="form-control" required>
-                        <option value="">-- Select Role --</option>
-                        @foreach($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
+                    <label class="form-label">Role Name</label>
+                    <input type="text" class="form-control" value="{{ $role->name }}" disabled>
                 </div>
 
                 <div class="mb-3">
