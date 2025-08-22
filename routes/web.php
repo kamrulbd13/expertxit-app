@@ -9,6 +9,11 @@ use App\Http\Controllers\frontend\ItServiceControlller;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/contact',[HomeController::class, 'contact'])->name('contact.index');
+Route::get('/about',[HomeController::class, 'about'])->name('about.index');
+Route::get('/Privacy-Policy',[HomeController::class, 'privacyPolicy'])->name('privacy.policy.index');
+Route::get('/Terms-of-Service',[HomeController::class, 'termsService'])->name('terms.service.index');
+Route::get('/Accessibility',[HomeController::class, 'accessibility'])->name('accessibility.index');
+Route::get('/Sitemap',[HomeController::class, 'sitemap'])->name('sitemap.index');
 Route::get('/ebook/store',[HomeController::class, 'ebook'])->name('ebook.store.index');
 Route::get('/ebook/details/{id}', [HomeController::class, 'details'])->name('ebook.show.details');
 Route::get('/training/details/{id}',[TrainingController::class, 'details'])->name('details');

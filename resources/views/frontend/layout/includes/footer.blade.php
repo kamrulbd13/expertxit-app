@@ -313,7 +313,7 @@
                     <div class="col-md-4 mb-4 mb-md-0">
                         <h4>Quick Links</h4>
                         <ul class="link-list">
-                            <li><a href="#">About</a></li>
+                            <li><a href="{{route('about.index')}}">About</a></li>
                             <li><a href="{{route('contact.index')}}">Contact</a></li>
                             <li><a href="#">Academic Programs</a></li>
                             <li><a href="#">Faculty Members</a></li>
@@ -404,10 +404,10 @@
                 </div>
                 <div class="col-md-6 text-md-end">
                     <div class="d-flex flex-wrap gap-3 justify-content-md-end">
-                        <a href="#" class="text-muted small">Privacy Policy</a>
-                        <a href="#" class="text-muted small">Terms of Service</a>
-                        <a href="#" class="text-muted small">Accessibility</a>
-                        <a href="#" class="text-muted small">Sitemap</a>
+                        <a href="{{route('privacy.policy.index')}}" class="text-muted small">Privacy Policy</a>
+                        <a href="{{route('terms.service.index')}}" class="text-muted small">Terms of Service</a>
+                        <a href="{{route('accessibility.index')}}" class="text-muted small">Accessibility</a>
+                        <a href="{{route('sitemap.index')}}" class="text-muted small">Sitemap</a>
                     </div>
                 </div>
             </div>

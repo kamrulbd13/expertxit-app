@@ -38,5 +38,31 @@ class HomeController extends Controller
         return view('frontend.ebook.details', compact('ebook'));
     }
 
+public function about(){
+        return view('frontend.about.index');
+}
+public function privacyPolicy(){
+        return view('frontend.privacyPolicy.index');
+}
+
+public function termsService(){
+        return view('frontend.termsService.index');
+
+}
+
+public function accessibility(){
+        return view('frontend.accessibility.index');
+}
+
+public function sitemap(){
+        return view('frontend.sitemap.index');
+}
+
+
+
+
+
+
+
 
 }

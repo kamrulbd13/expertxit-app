@@ -1,87 +1,118 @@
 @extends('frontend.layout.master')
 @section('mainContent')
 
-
     <style>
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 0 auto;
-
+        :root {
+            --primary: #004aad;
+            --primary-dark: #002d6b;
+            --light: #f5f8ff;
+            --dark: #1c1c1c;
         }
 
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
         .contact-hero {
-            background: var(--primary-dark);
-            background-size: cover;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: #fff;
-            padding: 4rem 0;
+            padding: 4rem 1rem;
             text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            margin-bottom: 3rem;
         }
 
         .contact-hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 1.2rem;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+            margin-bottom: 1rem;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.4);
         }
 
         .contact-hero p {
             font-size: 1.2rem;
-            max-width: 750px;
+            opacity: 0.95;
+            max-width: 720px;
             margin: 0 auto;
         }
 
+        /* Grid Layout */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
 
-        .contact-info,
-        .contact-form {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        /* Contact Info Card */
+        .contact-info {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
         }
-
-        .contact-info h2,
-        .contact-form h2 {
+        .contact-info:hover {
+            transform: translateY(-6px);
+        }
+        .contact-info h2 {
             color: var(--primary);
-            margin-top: 0;
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
         .info-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 1.5rem;
         }
 
         .info-icon {
             background-color: var(--light);
             color: var(--primary);
-            width: 40px;
-            height: 40px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 1rem;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
         .info-content h3 {
-            margin: 0 0 0.3rem 0;
+            margin: 0;
             font-size: 1.1rem;
             color: var(--dark);
+            font-weight: 600;
         }
 
         .info-content p {
-            margin: 0;
+            margin: 0.2rem 0 0;
             font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .contact-form h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
         .form-group {
@@ -93,60 +124,69 @@
             margin-bottom: 0.4rem;
             font-weight: 600;
             font-size: 0.95rem;
+            color: var(--dark);
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 0.4rem;
+            padding: 0.3rem 0.5rem;
             border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: inherit;
+            border-radius: 5px;
             font-size: 1rem;
-            transition: border 0.2s ease-in-out;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 6px rgba(0,74,173,0.25);
             outline: none;
         }
 
         .form-group textarea {
-            min-height: 120px;
+            min-height: 130px;
             resize: vertical;
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background-color: var(--primary);
             color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.6rem;
             border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
+            border-radius: 8px;
+            font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+        }
+
+        .btn i {
+            margin-right: 0.4rem;
         }
 
         .btn:hover {
-            background-color: #201945;
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
+        /* Map */
         .map-container {
             margin: 3rem 0;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         .map-container iframe {
             width: 100%;
-            height: 400px;
+            height: 420px;
             border: none;
         }
 
@@ -154,21 +194,22 @@
             .contact-hero h1 {
                 font-size: 2rem;
             }
-
             .contact-hero p {
                 font-size: 1rem;
             }
         }
     </style>
 
-
+    <!-- Hero Section -->
     <section class="contact-hero">
         <div class="container">
             <h1>Contact Us</h1>
-            <p>Have questions about our training programs or placement services? <br> Reach out to us - our team is ready to help you start your career.</p>
+            <p>Have questions about our training programs, admissions, or placement services? <br>
+                Reach out to us — our team is ready to assist you.</p>
         </div>
     </section>
 
+    <!-- Contact Grid -->
     <div class="container">
         <div class="contact-grid">
             <!-- Contact Info -->
@@ -176,7 +217,7 @@
                 <h2>Get in Touch</h2>
 
                 <div class="info-item">
-                    <div class="info-icon"><i class="fa fa-globe"></i></div>
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="info-content">
                         <h3>Our Location</h3>
                         <p>{{$systemInfo->site_name ?? ''}}<br>{{$systemInfo->address ?? ''}}</p>
@@ -184,15 +225,15 @@
                 </div>
 
                 <div class="info-item">
-                    <div class="info-icon"><i class="fa fa-envelope"></i></div>
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
                     <div class="info-content">
                         <h3>Email Us</h3>
-                       <p> {{$systemInfo->mail1 ?? ''}}<br>{{$systemInfo->mail2 ?? ''}}</p>
+                        <p>{{$systemInfo->mail1 ?? ''}}<br>{{$systemInfo->mail2 ?? ''}}</p>
                     </div>
                 </div>
 
                 <div class="info-item">
-                    <div class="info-icon"><i class="fa fa-phone"></i></div>
+                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
                     <div class="info-content">
                         <h3>Call Us</h3>
                         <p>{{$systemInfo->number1 ?? ''}}<br>{{$systemInfo->number2 ?? ''}} (General Inquiry)</p>
@@ -200,10 +241,10 @@
                 </div>
 
                 <div class="info-item">
-                    <div class="info-icon"><i class="fa fa-clock"></i></div>
+                    <div class="info-icon"><i class="fas fa-clock"></i></div>
                     <div class="info-content">
                         <h3>Working Hours</h3>
-                        <p>Monday - Saturday: 8:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
+                        <p>Mon - Sat: 8:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
                     </div>
                 </div>
             </div>
@@ -214,7 +255,7 @@
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" class="form-control form-control-sm" id="name" name="name" required />
+                        <input type="text" id="name" name="name" required />
                     </div>
 
                     <div class="form-group">
@@ -240,39 +281,37 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="message">
-                            Your Message
-                        </label>
+                        <label for="message">Your Message</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-paper-plane me-1"></i> Send Message
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
                     </button>
-
                 </form>
             </div>
         </div>
 
         <!-- Google Map -->
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.06396725783!2d90.25487754014735!3d23.780753031632905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1751760622530!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.06396725783!2d90.25487754014735!3d23.780753031632905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1751760622530!5m2!1sen!2sbd" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 
     <script>
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            const name = this.name.value;
-            const email = this.email.value;
-            const phone = this.phone.value;
-            const subject = this.subject.value;
-            const message = this.message.value;
-            console.log({ name, email, phone, subject, message });
-            alert('Thank you for your message! We will contact you shortly.');
+            const formData = {
+                name: this.name.value,
+                email: this.email.value,
+                phone: this.phone.value,
+                subject: this.subject.value,
+                message: this.message.value
+            };
+            console.log(formData);
+            alert('✅ Thank you for your message! We will contact you shortly.');
             this.reset();
         });
     </script>
-
 
 @endsection
