@@ -1,5 +1,8 @@
 @extends('backend.layout.master')
 @section('mainContent')
+    @php
+        $roleName = \Illuminate\Support\Facades\Auth::user()->role?->name ?? 'No Role';
+    @endphp
 {{--    table --}}
 <div class="card">
     <div class="card-body">
@@ -52,8 +55,9 @@
                             <td>
                                 <a href="{{route('kidsProgramme.show', $item->id)}}" data-toggle="tooltip" data-placement="bottom" title="View" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                 <a href="{{route('kidsProgramme.edit', $item->id)}}"  data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                               @if($roleName === 'admin')
                                 <a href="{{route('kidsProgramme.destroy', $item->id)}}" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-
+                                @endif
                             </td>
                         </tr>
                         @endforeach

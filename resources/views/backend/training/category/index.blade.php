@@ -1,5 +1,8 @@
 @extends('backend.layout.master')
 @section('mainContent')
+    @php
+        $roleName = \Illuminate\Support\Facades\Auth::user()->role?->name ?? 'No Role';
+    @endphp
 {{--    table --}}
 <div class="page-header">
     <h3 class="page-title">
@@ -72,8 +75,9 @@
 
                                 <a href="{{route('training.category.detail', $trainingCategory->id)}}" data-toggle="tooltip" data-placement="bottom" title="View" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                 <a href="{{route('training.category.edit', $trainingCategory->id)}}"  data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                               @if($roleName === 'admin')
                                 <a href="{{route('training.category.delete', $trainingCategory->id)}}" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-
+                                @endif
                             </td>
                         </tr>
                         @endforeach

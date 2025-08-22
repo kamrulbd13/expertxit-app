@@ -1,5 +1,8 @@
 @extends('backend.layout.master')
 @section('mainContent')
+    @php
+        $roleName = \Illuminate\Support\Facades\Auth::user()->role?->name ?? 'No Role';
+    @endphp
 {{--    table --}}
 <div class="card">
     <div class="card-body">
@@ -51,9 +54,19 @@
                             </td>
                             <td>
                                  <a href="{{route('software.show', $item->id)}}" data-toggle="tooltip" data-placement="bottom" title="View" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                                <a href="{{route('software.edit', $item->id)}}"  data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                <a href="{{route('software.destroy', $item->id)}}" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 
+                                {{-- Edit (admin & editor) --}}
+                                @if(in_array($roleName, ['admin', 'editor']))
+                                    <a href="{{ route('software.edit', $item->id) }}"
+                                       data-toggle="tooltip" data-placement="bottom"
+                                       title="Edit" class="btn btn-warning">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                @endif
+{{--                                only admin--}}
+                                @if($roleName === 'admin')
+                                <a href="{{route('software.destroy', $item->id)}}" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
