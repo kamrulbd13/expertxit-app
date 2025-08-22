@@ -1,16 +1,15 @@
 <section class="hero text-white" aria-label="Hero Slider">
     <div class="container">
         <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-
-           {{-- Slides --}}
             <div class="carousel-inner">
+
                 @foreach($heroSliders as $key => $slider)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                         <div class="row align-items-center hero-slide">
-                            <div class="col-lg-7">
-                                <h1 class="display-5 fw-bold">{{ $slider->title }}</h1>
-                                <p class="lead mt-3">{!! $slider->description  !!}</p>
-                                <div class="mt-4">
+                            <div class="col-lg-7 text-animate">
+                                <h1 class="display-5 fw-bold animate-title">{{ $slider->title }}</h1>
+                                <p class="lead mt-3 animate-desc">{!! $slider->description !!}</p>
+                                <div class="mt-4 animate-buttons">
                                     <a href="#contact" class="btn btn-light btn-lg me-2">
                                         <i class="fas fa-phone me-1"></i> Contact Us
                                     </a>
@@ -19,6 +18,7 @@
                                     </a>
                                 </div>
                             </div>
+
                             <div class="col-lg-5 d-none d-lg-block">
                                 {{-- SVG Background Animation --}}
                                 <svg width="100%" height="260" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
@@ -66,9 +66,9 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
 
-       </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -79,19 +79,47 @@
         height: 460px;
         color: #fff;
         position: relative;
+        overflow: hidden;
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         line-height: 1.3;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        text-shadow: 0 3px 8px rgba(0,0,0,0.5);
     }
 
     .hero .lead {
         opacity: .95;
-        font-size: 1.15rem;
+        font-size: 1.25rem;
     }
 
+    /* ✨ Animations */
+    .animate-title {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .animate-desc {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s ease 0.2s;
+    }
+
+    .animate-buttons {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s ease 0.4s;
+    }
+
+    .carousel-item.active .animate-title,
+    .carousel-item.active .animate-desc,
+    .carousel-item.active .animate-buttons {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Buttons */
     .btn-light {
         background: rgba(255,255,255,0.9);
         color: #003366;
