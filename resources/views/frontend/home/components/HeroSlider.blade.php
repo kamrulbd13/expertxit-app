@@ -9,7 +9,7 @@
                         <div class="row align-items-center hero-slide">
                             <div class="col-lg-7">
                                 <h1 class="display-5 fw-bold">{{ $slider->title }}</h1>
-                                <p class="lead mt-3">{{ $slider->description }}</p>
+                                <p class="lead mt-3">{!! $slider->description  !!}</p>
                                 <div class="mt-4">
                                     <a href="#contact" class="btn btn-light btn-lg me-2">
                                         <i class="fas fa-phone me-1"></i> Contact Us
